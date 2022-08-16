@@ -12,7 +12,7 @@ module('Integration | Component | card-form-mini', function (hooks) {
 
     await render(hbs`<CardFormMini />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom(this.element).hasText('Card-sized \"Add Card\" component');
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module('Integration | Component | card-form-mini', function (hooks) {
       </CardFormMini>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).includesText('template block text');
   });
 });

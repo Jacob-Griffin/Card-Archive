@@ -12,7 +12,7 @@ module('Integration | Component | card', function (hooks) {
 
     await render(hbs`<Card />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom(this.element).hasText('Single Card Component');
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module('Integration | Component | card', function (hooks) {
       </Card>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).includesText('template block text');
   });
 });

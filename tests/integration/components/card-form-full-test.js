@@ -12,7 +12,7 @@ module('Integration | Component | card-form-full', function (hooks) {
 
     await render(hbs`<CardFormFull />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom(this.element).hasText('Main \"Add Card\" component');
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module('Integration | Component | card-form-full', function (hooks) {
       </CardFormFull>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).includesText('template block text');
   });
 });

@@ -12,7 +12,7 @@ module('Integration | Component | collection-list', function (hooks) {
 
     await render(hbs`<CollectionList />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom(this.element).hasText('List of Card Collections Component');
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module('Integration | Component | collection-list', function (hooks) {
       </CollectionList>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).includesText('template block text');
   });
 });

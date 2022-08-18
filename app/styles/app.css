@@ -80,10 +80,13 @@ p {
   background-color: #677ae4;
   background-color: #05526A;
   background-color: #e46855;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .menu h1 {
   position: relative;
-  padding: 5px 0 0 8px;
+  padding: 5px 0 5px 8px;
   color: #f9f9f9;
   font-size: 1.8em;
   font-style: italic;
@@ -103,7 +106,10 @@ p {
   opacity: 1;
 }
 .menu .links {
-  padding: 0 21px;
+  height: 100%;
+  padding: auto 21px;
+  display: flex;
+  align-items: center;
 }
 .menu .links a {
   position: relative;
@@ -153,6 +159,20 @@ p {
   background-color: #f6f6f6;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.collection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.card {
+  width: 173px;
+  height: 250px;
+  border: 2px solid black;
+  margin-bottom: 10px;
 }
 
 .results {

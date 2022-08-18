@@ -12,7 +12,9 @@ module('Integration | Component | collection', function (hooks) {
 
     await render(hbs`<Collection />`);
 
-    assert.dom(this.element).hasText('Card Collection Component');
+    assert.dom(this.element).exists('.card');
+
+    /* No Yeild
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +23,6 @@ module('Integration | Component | collection', function (hooks) {
       </Collection>
     `);
 
-    assert.dom(this.element).includesText('template block text');
+    assert.dom(this.element).includesText('template block text');*/
   });
 });

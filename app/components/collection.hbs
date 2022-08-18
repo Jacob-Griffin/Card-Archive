@@ -1,2 +1,6 @@
-<h3>Card Collection Component</h3>
+<div class="collection">
+    {{#each this.list as |item|}}
+        <Card @card={{item}}/>
+    {{/each}}
+</div>
 {{yield}}

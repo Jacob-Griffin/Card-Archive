@@ -1,0 +1,26 @@
+{
+    "data":{
+        "type":"collection",
+        "id":"all",
+        "attributes":{
+            "cards":[
+                {
+                    "card_id":87209160,
+                    "card_name":"Tri-Brigade Fraktall",
+                    "card_type":"Effect Monster",
+                    "card_images":{
+
+                    }
+                },
+                {
+                    "card_id":50810455,
+                    "card_name":"Tri-Brigade Kerass",
+                    "card_type":"Effect Monster",
+                    "card_images":{
+
+                    }
+                }
+            ]
+        }
+    }
+}

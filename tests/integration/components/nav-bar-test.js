@@ -3,26 +3,26 @@ import { setupRenderingTest } from 'card-archive/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | card', function (hooks) {
+module('Integration | Component | nav-bar', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Card />`);
+    await render(hbs`<NavBar />`);
 
-    assert.dom('.card').isVisible();
-    assert.dom('.card h3').exists();
-    assert.dom('.card p').exists();
+    assert.dom(this.element).hasText('Card Archive Add Cards Collections Search');
+
+    /* No yeilds intentionally
 
     // Template block usage:
     await render(hbs`
-      <Card>
+      <NavBar>
         template block text
-      </Card>
+      </NavBar>
     `);
 
-    assert.dom(this.element).includesText('template block text');
+    assert.dom(this.element).hasText('template block text');*/
   });
 });

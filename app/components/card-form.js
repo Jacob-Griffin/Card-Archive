@@ -81,7 +81,7 @@ export default class CardFormComponent extends Component {
 
     @action
     addCard(id){
-        let cardObject = this.cardData[id];
+        let cardObject = {...this.cardData[id],location:this.args.collection};
 
         let db;
         const request = window.indexedDB.open('card-db');

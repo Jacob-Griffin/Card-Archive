@@ -209,6 +209,12 @@ p {
   margin-bottom: 10px;
 }
 
+.centered {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 #result-container {
   height: 0;
   width: 100%;

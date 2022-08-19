@@ -7,7 +7,7 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route('collections');
-  this.route('add');
+  this.route('collection', {path: '/collection/:collection_id'});
+  this.route('cards');
   this.route('search');
 });

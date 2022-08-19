@@ -1,11 +1,9 @@
 import Route from "@ember/routing/route";
-import {service} from "@ember/service";
 
-export default class AddCardRoute extends Route {
+export default class CollectionRoute extends Route {
 
-    @service store;
-
-    async model() {
+    async model(params) {
+        const collection = params.collection_id;
         let db;
         return new Promise((callback) =>{
             const request = window.indexedDB.open('card-db');
@@ -17,10 +15,6 @@ export default class AddCardRoute extends Route {
                 objectStore.createIndex("name","name", {unique: false});
                 objectStore.createIndex("location","location",{unique: false});
 
-                objectStore.transaction.oncomplete = (event) =>{
-                    const cardObjectStore = db.transaction("cards","readwrite").objectStore("cards");
-
-                }
             };
             request.onerror = () => {
                 console.error("no indexed db");
@@ -30,9 +24,20 @@ export default class AddCardRoute extends Route {
                 console.log(db);
                 const transaction = db.transaction(["cards"],"readwrite");
                 const objectStore = transaction.objectStore("cards");
-                const outputRequest = objectStore.getAll();
-                outputRequest.onsuccess = (event) =>{
-                    callback(event.target.result);
+                const index = objectStore.index('location');
+
+                const cardResult = [];
+
+                index.openCursor(IDBKeyRange.only(collection)).onsuccess = (event) => {
+                    const cursor = event.target.result;
+                    if(cursor){
+                        cardResult.push({...cursor.value,"key":cursor.key});
+
+                        cursor.continue();
+                    }
+                    else{
+                        callback({"collection":collection,"cards":cardResult});
+                    }
                 }
             };
         });

@@ -1,2 +1,6 @@
-<h3>List of Card Collections Component</h3>
-{{yield}}
+<div id="your-collections">
+    <CollectionForm />
+{{#each @collections as |collection|}}
+    <CollectionBox @collection="{{collection}}"/>
+{{/each}}
+</div>

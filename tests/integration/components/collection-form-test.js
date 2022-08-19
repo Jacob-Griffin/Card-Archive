@@ -3,28 +3,24 @@ import { setupRenderingTest } from 'card-archive/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | nav-bar', function (hooks) {
+module('Integration | Component | collection-form', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<NavBar />`);
+    await render(hbs`<CollectionForm />`);
 
-    assert
-      .dom(this.element)
-      .hasText('Card Archive Add Cards Collections Search');
-
-    /* No yeilds intentionally
+    assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
-      <NavBar>
+      <CollectionForm>
         template block text
-      </NavBar>
+      </CollectionForm>
     `);
 
-    assert.dom(this.element).hasText('template block text');*/
+    assert.dom(this.element).hasText('template block text');
   });
 });

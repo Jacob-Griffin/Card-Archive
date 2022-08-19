@@ -1,7 +1,7 @@
 <div class="collection" id="{{@collection}}">
     <CardForm @collection="{{@collection}}"></CardForm>
-    {{#each this.list as |item|}}
-        <Card @card={{item}}/>
+    {{#each @data as |item|}}
+        <Card @drag="true" @card={{item}}/>
     {{/each}}
 </div>
 {{yield}}

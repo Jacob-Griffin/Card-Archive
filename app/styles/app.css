@@ -177,7 +177,7 @@ p {
 }
 
 .form {
-  border: solid 4px dodgerblue;
+  border: solid 4px dodgerblue !important;
   border-radius: 10px;
   padding: 10px;
   box-sizing: border-box;
@@ -234,6 +234,28 @@ p {
 
 #add-results.show:not(:empty) {
   display: block;
+}
+
+#your-collections {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.collection-link {
+  height: 300px;
+  width: 200px;
+  border: solid black 1px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.collection-image {
+  height: 250px;
+  width: 175px;
+  margin-top: 10px;
 }
 
 .ygopro-result {

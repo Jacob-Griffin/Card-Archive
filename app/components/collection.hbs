@@ -1,4 +1,5 @@
-<div class="collection">
+<div class="collection" id="{{@collection}}">
+    <CardForm @collection="{{@collection}}"></CardForm>
     {{#each this.list as |item|}}
         <Card @card={{item}}/>
     {{/each}}

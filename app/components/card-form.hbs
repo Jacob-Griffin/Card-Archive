@@ -1,0 +1,15 @@
+<div class="card form">
+    <h1>+</h1>
+    <p>Add Cards</p>
+    <div id="input-focus-group">
+        <input type="text" placeholder="Search Cards" id="cardSearch" {{on "input" this.manageBuffer}}/>
+        <div id="result-container">
+            <div id="add-results"></div>
+        </div>
+    </div>
+    <label for="keySelect">Search By: </label>
+    <select id="keySelect" {{on "change" this.changeEvent}}>
+        <option value="fname">Name</option>
+        <option value="desc">Effect</option>
+    </select>
+</div>

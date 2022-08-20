@@ -59,7 +59,7 @@ export function getCards(collection) {
         index.openCursor(IDBKeyRange.only(collection)).onsuccess = (event) => {
           const cursor = event.target.result;
           if (cursor) {
-            cardResult.push({ ...cursor.value, key: cursor.key });
+            cardResult.push({ ...cursor.value, key: cursor.primaryKey });
 
             cursor.continue();
           } else {
@@ -83,4 +83,21 @@ export function getCards(collection) {
       };
     };
   });
+}
+
+export function sortCard(cardKey,collection){
+    let db;
+    const request = window.indexedDB.open('card-db', 5);
+
+    request.onsuccess = (event) =>{
+        db = event.target.result;
+
+        const transaction = db.transaction(['cards'],'readwrite');
+        const cardStore = transaction.objectStore('cards');
+        cardStore.get(cardKey).onsuccess = (event) =>{
+            let cardData = event.target.result;
+            cardData.location = collection;
+            cardStore.put(cardData,cardKey);
+        }
+    }
 }

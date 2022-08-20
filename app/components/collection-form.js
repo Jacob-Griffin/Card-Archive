@@ -14,17 +14,12 @@ export default class CollectionFormComponent extends Component {
     };
     request.onsuccess = (event) => {
       db = event.target.result;
-      const transaction = db.transaction(['locations','images'], 'readwrite');
+      const transaction = db.transaction(['locations'], 'readwrite');
       const locationStore = transaction.objectStore('locations');
       const locationRequest = locationStore.add(collectionName);
       locationRequest.onsuccess = (event) => {
-        const imgStore = transaction.objectStore('images');
-        const imgRequest = imgStore.add('/img/default.png',collectionName);
-        imgRequest.onsuccess = (event) => {
-          console.log('Added:', collectionName);
-          this.renderCollection(collectionName);
-        }
-
+        console.log('Added:', collectionName);
+        this.renderCollection(collectionName);
       };
 
     };
@@ -38,7 +33,7 @@ export default class CollectionFormComponent extends Component {
 
     collection.classList.add('collection-link');
 
-    image.src = "/images/default.png";
+    image.src = "/images/cardSlot.png";
     image.classList.add("collection-image");
 
     title.innerHTML = titleCase(name);

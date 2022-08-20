@@ -1,4 +1,4 @@
-<div class="collection-link">
+<div class="collection-link" destination="{{@collection}}" {{on "drop" this.handleDrop}} {{on "dragover" this.enableDrag}}>
     <img class="collection-image" src="/images/cardSlot.png"/>
-    <h3>{{titleCase @collection}}</h3>
+    <h3><a href="collection/{{@collection}}" >{{titleCase @collection}}</a></h3>
 </div>

@@ -97,6 +97,7 @@ export default class CardFormComponent extends Component {
       const objectStore = transaction.objectStore('cards');
       const outputRequest = objectStore.add(cardObject);
       outputRequest.onsuccess = (event) => {
+        cardObject.key = event.target.result;
         this.createCard(cardObject);
       };
     };
@@ -106,10 +107,20 @@ export default class CardFormComponent extends Component {
   createCard(data) {
     const card = document.createElement('div');
     const imgurlString = `url(${data.images.image_url})`;
+    card.id = `card-${data.key}`;
     card.classList.add('card');
     card.style.backgroundImage = imgurlString;
     card.setAttribute('draggable', true);
+    card.addEventListener('dragstart',(event)=>{this.readyData(event,data)});
 
     document.getElementById(this.args.collection).appendChild(card);
+  }
+
+  @action
+  readyData(event,cardData) {
+    return event.dataTransfer.setData(
+      'text/data',
+      JSON.stringify(cardData)
+    );
   }
 }

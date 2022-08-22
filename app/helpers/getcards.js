@@ -1,10 +1,12 @@
 import { titleCase } from './titleCase';
 
+const dbVersion = 6;
+
 export function getCards(collection) {
   let db;
   return new Promise((callback) => {
     //Open the Database
-    const request = window.indexedDB.open('card-db', 6);
+    const request = window.indexedDB.open('card-db', dbVersion);
 
     //If the database doesn't exist at this version, create it
     request.onupgradeneeded = (event) => {
@@ -19,7 +21,7 @@ export function getCards(collection) {
         autoIncrement: true,
       });
       const locationStore = db.createObjectStore('locations', {
-        autoIncrement:true,
+        autoIncrement: true,
       });
 
       //make sure locations starts with Unsorted
@@ -85,19 +87,38 @@ export function getCards(collection) {
   });
 }
 
-export function sortCard(cardKey,collection){
-    let db;
-    const request = window.indexedDB.open('card-db', 5);
+export function sortCard(cardKey, collection) {
+  let db;
+  const request = window.indexedDB.open('card-db', dbVersion);
 
-    request.onsuccess = (event) =>{
-        db = event.target.result;
+  request.onsuccess = (event) => {
+    db = event.target.result;
 
-        const transaction = db.transaction(['cards'],'readwrite');
-        const cardStore = transaction.objectStore('cards');
-        cardStore.get(cardKey).onsuccess = (event) =>{
-            let cardData = event.target.result;
-            cardData.location = collection;
-            cardStore.put(cardData,cardKey);
-        }
-    }
+    const transaction = db.transaction(['cards'], 'readwrite');
+    const cardStore = transaction.objectStore('cards');
+    cardStore.get(cardKey).onsuccess = (event) => {
+      let cardData = event.target.result;
+      cardData.location = collection;
+      cardStore.put(cardData, cardKey);
+    };
+  };
+}
+
+export function deleteCard(cardKey) {
+  let db;
+  const request = window.indexedDB.open('card-db', dbVersion);
+
+  request.onsuccess = (event) => {
+    db = event.target.result;
+
+    const transaction = db.transaction(['cards'], 'readwrite');
+    const cardStore = transaction.objectStore('cards');
+    const delRequest = cardStore.delete(cardKey);
+    delRequest.onsuccess = (event) => {
+      console.log('deleted ', cardKey);
+    };
+    delRequest.onerror = (event) => {
+      console.log(event.target.result);
+    };
+  };
 }

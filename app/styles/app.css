@@ -176,7 +176,13 @@ p {
   background-size: 173px 250px;
 }
 
-.form {
+.control-row {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: center;
+  gap: 30px;
+}
+.control-row .form {
   border: solid 4px dodgerblue !important;
   border-radius: 10px;
   padding: 10px;
@@ -185,7 +191,7 @@ p {
   flex-direction: column;
   justify-content: center;
 }
-.form h1 {
+.control-row .form h1 {
   color: dodgerblue;
   display: flex;
   text-align-last: bottom;
@@ -197,16 +203,38 @@ p {
   font-size: 4rem;
   font-weight: black;
 }
-.form p {
+.control-row .form p {
   color: dodgerblue;
   display: flex;
   justify-content: center;
   margin-bottom: 0.5rem;
 }
-.form input[type=text] {
+.control-row .form input[type=text] {
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 10px;
+}
+.control-row .delete {
+  --color: crimson;
+  border: solid 4px var(--color) !important;
+}
+.control-row .delete h1 {
+  color: var(--color);
+  height: 4rem;
+}
+.control-row .delete p {
+  color: var(--color);
+}
+.control-row .unsort {
+  --color: #99aacc;
+  border: solid 4px var(--color) !important;
+}
+.control-row .unsort h1 {
+  color: var(--color);
+  height: 4rem;
+}
+.control-row .unsort p {
+  color: var(--color);
 }
 
 .centered {

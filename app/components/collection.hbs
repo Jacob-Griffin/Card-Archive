@@ -1,7 +1,13 @@
 <div class="collection" id="{{@collection}}">
-    {{#if @displayform}}
-        <CardForm @collection="{{@collection}}"></CardForm>
-    {{/if}}
+    <div class="control-row">
+        {{#if this.isNotUnsorted}}
+            <UnsortCard />
+        {{/if}}
+        <DeleteCard />
+        {{#if @displayform}}
+            <CardForm @collection="{{@collection}}"></CardForm>
+        {{/if}}
+    </div>
     {{#each @data as |item|}}
         <Card @drag="true" @card={{item}}/>
     {{/each}}

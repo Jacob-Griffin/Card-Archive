@@ -1,12 +1,13 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { titleCase,unTitleCase } from '../helpers/titleCase';
+import { titleCase, unTitleCase } from '../helpers/titleCase';
 
 export default class CollectionFormComponent extends Component {
-
   @action
   createCollection() {
-    const collectionName = unTitleCase(document.getElementById("collectionInput").value);
+    const collectionName = unTitleCase(
+      document.getElementById('collectionInput').value
+    );
     let db;
     const request = window.indexedDB.open('card-db');
     request.onerror = () => {
@@ -20,7 +21,6 @@ export default class CollectionFormComponent extends Component {
       locationRequest.onsuccess = (event) => {
         this.renderCollection(collectionName);
       };
-
     };
   }
 
@@ -33,8 +33,8 @@ export default class CollectionFormComponent extends Component {
 
     collection.classList.add('collection-link');
 
-    image.src = "/images/cardSlot.png";
-    image.classList.add("collection-image");
+    image.src = '/images/cardSlot.png';
+    image.classList.add('collection-image');
 
     link.innerHTML = titleCase(name);
     link.href = `/collection/${name}`;
@@ -44,6 +44,6 @@ export default class CollectionFormComponent extends Component {
     collection.appendChild(image);
     collection.appendChild(title);
 
-    document.getElementById("your-collections").appendChild(collection);
+    document.getElementById('your-collections').appendChild(collection);
   }
 }

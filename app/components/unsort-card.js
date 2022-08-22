@@ -1,9 +1,8 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { sortCard } from '../helpers/getcards';
-import { titleCase } from '../helpers/titleCase';
 
-export default class CollectionBoxComponent extends Component {
+export default class UnsortCardComponent extends Component {
   @action
   enableDrag(event) {
     event.preventDefault();
@@ -18,11 +17,6 @@ export default class CollectionBoxComponent extends Component {
     const cardElement = document.getElementById(`card-${card.key}`);
     cardElement.parentElement.removeChild(cardElement);
 
-    let destinationElement = event.target;
-    if (destinationElement.tagName !== 'div') {
-      destinationElement = event.target.parentElement;
-    }
-
-    sortCard(card.key, destinationElement.getAttribute('destination'));
+    sortCard(card.key,'unsorted');
   }
 }

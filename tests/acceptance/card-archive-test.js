@@ -1,12 +1,19 @@
 import { module, test } from 'qunit';
-import { click, visit, currentURL,fillIn, waitFor, triggerEvent } from '@ember/test-helpers';
+import {
+  click,
+  visit,
+  currentURL,
+  fillIn,
+  waitFor,
+  triggerEvent,
+} from '@ember/test-helpers';
 import { setupApplicationTest } from 'card-archive/tests/helpers';
 import { clearDatabase } from '../helpers/clearIndexedDB';
 
 module('Acceptance | card archive', function (hooks) {
   setupApplicationTest(hooks);
 
-  await test('visiting /', async function (assert) {
+  test('visiting /', async function (assert) {
     await visit('/');
     await clearDatabase();
 
@@ -21,41 +28,42 @@ module('Acceptance | card archive', function (hooks) {
     await click('.link-stack .button[href="/cards"]');
 
     assert.strictEqual(currentURL(), '/cards');
-
   });
-  await test('visiting /cards',async function(assert){
+  test('visiting /cards', async function (assert) {
     await visit('/cards');
 
     assert.dom('div.card.form').exists();
   });
-  await test('adding a card',async function(assert){
+  test('adding a card', async function (assert) {
     await visit('/cards');
-    
-    await fillIn('#cardSearch','tri-brigade kitt');
 
-    await waitFor('.ygopro-result h5',{timeout:3000});
-    
+    await fillIn('#cardSearch', 'tri-brigade kitt');
+
+    await waitFor('.ygopro-result h5', { timeout: 3000 });
+
     //check that the autofill for the card we searched is there, then click it
     assert.dom('.ygopro-result h5').hasText('Tri-Brigade Kitt');
 
     //click the result
-    await triggerEvent('.ygopro-result h5','click');
+    await triggerEvent('.ygopro-result h5', 'click');
 
     //check that the card exists
     assert.dom('.card:not(.form)').doesNotIncludeText('Add Cards');
   });
-  await test('adding a collection',async function(assert){
+  test('adding a collection', async function (assert) {
     await visit('/cards');
 
-    await fillIn('#collectionInput','Test Collection');
+    await fillIn('#collectionInput', 'Test Collection');
     await click('#addCollectionButton');
 
     await waitFor('.collection-link:not(.form)');
 
     assert.dom('.collection-link:not(.form)').hasText('Test Collection');
-    assert.dom('.collection-link a[href="/collection/test-collection"]').exists();
+    assert
+      .dom('.collection-link a[href="/collection/test-collection"]')
+      .exists();
   });
-  await test('check collection pages', async function(assert){
+  test('check collection pages', async function (assert) {
     //check the unsorted collection page for the add card (working collection)
     await visit('/collection/unsorted');
 
@@ -70,6 +78,8 @@ module('Acceptance | card archive', function (hooks) {
     await visit('/collection/fake-collection');
 
     assert.dom('.card.form').doesNotExist();
-    assert.dom(this.element).includesText("Collection \"Fake Collection\" not found");
+    assert
+      .dom(this.element)
+      .includesText('Collection "Fake Collection" not found');
   });
 });

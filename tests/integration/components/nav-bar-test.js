@@ -12,11 +12,7 @@ module('Integration | Component | nav-bar', function (hooks) {
 
     await render(hbs`<NavBar />`);
 
-    assert
-      .dom(this.element)
-      .hasText('Card Archive Cards Search');
-
-    /* No yeilds intentionally
+    assert.dom(this.element).hasText('Card Archive Cards Search');
 
     // Template block usage:
     await render(hbs`
@@ -25,6 +21,6 @@ module('Integration | Component | nav-bar', function (hooks) {
       </NavBar>
     `);
 
-    assert.dom(this.element).hasText('template block text');*/
+    assert.dom(this.element).doesNotIncludeText('template block text');
   });
 });

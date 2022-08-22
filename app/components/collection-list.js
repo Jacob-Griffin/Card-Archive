@@ -1,6 +1,3 @@
 import Component from '@glimmer/component';
 
-
-export default class CollectionListComponent extends Component {
-    
-}
+export default class CollectionListComponent extends Component {}

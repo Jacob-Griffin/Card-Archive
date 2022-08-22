@@ -18,7 +18,6 @@ export default class CollectionFormComponent extends Component {
       const locationStore = transaction.objectStore('locations');
       const locationRequest = locationStore.add(collectionName);
       locationRequest.onsuccess = (event) => {
-        console.log('Added:', collectionName);
         this.renderCollection(collectionName);
       };
 
@@ -30,13 +29,17 @@ export default class CollectionFormComponent extends Component {
     const collection = document.createElement('div');
     const image = document.createElement('img');
     const title = document.createElement('h3');
+    const link = document.createElement('a');
 
     collection.classList.add('collection-link');
 
     image.src = "/images/cardSlot.png";
     image.classList.add("collection-image");
 
-    title.innerHTML = titleCase(name);
+    link.innerHTML = titleCase(name);
+    link.href = `/collection/${name}`;
+
+    title.appendChild(link);
 
     collection.appendChild(image);
     collection.appendChild(title);

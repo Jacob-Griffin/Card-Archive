@@ -97,7 +97,6 @@ export default class CardFormComponent extends Component {
       const objectStore = transaction.objectStore('cards');
       const outputRequest = objectStore.add(cardObject);
       outputRequest.onsuccess = (event) => {
-        console.log('Added:', cardObject);
         this.createCard(cardObject);
       };
     };

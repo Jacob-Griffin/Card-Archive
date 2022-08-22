@@ -106,8 +106,9 @@ export default class CardFormComponent extends Component {
   @action
   createCard(data) {
     const card = document.createElement('div');
+    const imgurlString = `url(${data.images.image_url})`;
     card.classList.add('card');
-    card.style.backgroundImage = `url(${data.images.image_url})`;
+    card.style.backgroundImage = imgurlString;
     card.setAttribute('draggable', true);
 
     document.getElementById(this.args.collection).appendChild(card);

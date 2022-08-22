@@ -1,6 +1,6 @@
 {{#if @model.locationFound}}
     <h1 class="centered">{{titleCase @model.collection}}</h1>
-    <Collection user="" @collection="{{@model.collection}}" @data={{@model.cards}}></Collection>
+    <Collection @displayform={{true}} @collection="{{@model.collection}}" @data={{@model.cards}}></Collection>
 {{else}}
-    <p>Collection "{{titleCase @model.collection}}" not found</p>
+    <p class="message">Collection "{{titleCase @model.collection}}" not found</p>
 {{/if}}

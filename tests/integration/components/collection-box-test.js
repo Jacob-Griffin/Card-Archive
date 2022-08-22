@@ -10,17 +10,21 @@ module('Integration | Component | collection-box', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<CollectionBox />`);
+    await render(hbs`<CollectionBox @collection='unsorted-collection'/>`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom(this.element).hasText('Unsorted Collection');
+    assert.dom('div').hasClass('collection-link');
+    assert.dom('img').hasAttribute('src');
+    assert.dom('img[src="/images/cardSlot.png"]').exists();
+    assert.dom('a[href="collection/unsorted-collection"]').exists();
 
     // Template block usage:
     await render(hbs`
-      <CollectionBox>
+      <CollectionBox @collection='unsorted'>
         template block text
       </CollectionBox>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).doesNotIncludeText('template block text');
   });
 });

@@ -12,7 +12,8 @@ module('Integration | Component | collection-form', function (hooks) {
 
     await render(hbs`<CollectionForm />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom(this.element).includesText('+');
+    assert.dom('input#collectionInput').exists();
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +22,6 @@ module('Integration | Component | collection-form', function (hooks) {
       </CollectionForm>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).doesNotIncludeText('template block text');
   });
 });

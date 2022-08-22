@@ -12,15 +12,17 @@ module('Integration | Component | card-form-mini', function (hooks) {
 
     await render(hbs`<CardFormMini />`);
 
-    assert.dom(this.element).hasText('Card-sized "Add Card" component');
+    assert.dom(this.element).includesText('+');
+
+    assert.dom('#cardSearch').hasValue('Search Cards');
 
     // Template block usage:
     await render(hbs`
-      <CardFormMini>
+      <CardForm>
         template block text
-      </CardFormMini>
+      </CardForm>
     `);
 
-    assert.dom(this.element).includesText('template block text');
+    assert.dom(this.element).doesNotIncludeText('template block text');
   });
 });

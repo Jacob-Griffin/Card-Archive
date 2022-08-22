@@ -10,11 +10,26 @@ module('Integration | Component | card', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Card />`);
+    this.setProperties({
+      "card":{
+        "id": 56196385,
+        "name": "Tri-Brigade Kitt",
+        "type": "Effect Monster",
+        "images": {
+            "id": 56196385,
+            "image_url": "https://storage.googleapis.com/ygoprodeck.com/pics/56196385.jpg",
+            "image_url_small": "https://storage.googleapis.com/ygoprodeck.com/pics_small/56196385.jpg"
+        },
+        "location": "unsorted"
+      }
+    });
 
+    await render(hbs`<Card @card={{this.card}}/>`);
+
+    assert.dom('div').hasClass('card');
     assert.dom('.card').isVisible();
-    assert.dom('.card h3').exists();
-    assert.dom('.card p').exists();
+    assert.dom('.card').hasText('');
+    assert.dom('.card').hasStyle({'background-image':'url("https://storage.googleapis.com/ygoprodeck.com/pics/56196385.jpg")'});
 
     // Template block usage:
     await render(hbs`
@@ -23,6 +38,6 @@ module('Integration | Component | card', function (hooks) {
       </Card>
     `);
 
-    assert.dom(this.element).includesText('template block text');
+    assert.dom(this.element).doesNotIncludeText('template block text');
   });
 });

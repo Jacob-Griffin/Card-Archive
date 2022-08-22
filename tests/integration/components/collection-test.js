@@ -10,11 +10,13 @@ module('Integration | Component | collection', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
+    await render(hbs`<Collection @displayform="true"/>`);
+
+    assert.dom('div.card.form').exists();
+
     await render(hbs`<Collection />`);
 
-    assert.dom(this.element).exists('.card');
-
-    /* No Yeild
+    assert.dom('div.card').doesNotExist();
 
     // Template block usage:
     await render(hbs`
@@ -23,6 +25,6 @@ module('Integration | Component | collection', function (hooks) {
       </Collection>
     `);
 
-    assert.dom(this.element).includesText('template block text');*/
+    assert.dom(this.element).doesNotIncludeText('template block text');
   });
 });

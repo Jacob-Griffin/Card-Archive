@@ -14,7 +14,7 @@ module('Integration | Component | nav-bar', function (hooks) {
 
     assert
       .dom(this.element)
-      .hasText('Card Archive Add Cards Collections Search');
+      .hasText('Card Archive Cards Search');
 
     /* No yeilds intentionally
 

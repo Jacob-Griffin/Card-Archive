@@ -1,7 +1,8 @@
 <div class="collection" id="{{@collection}}">
-    <CardForm @collection="{{@collection}}"></CardForm>
+    {{#if @displayform}}
+        <CardForm @collection="{{@collection}}"></CardForm>
+    {{/if}}
     {{#each @data as |item|}}
         <Card @drag="true" @card={{item}}/>
     {{/each}}
 </div>
-{{yield}}

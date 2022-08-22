@@ -4,7 +4,7 @@ export function getCards(collection) {
   let db;
   return new Promise((callback) => {
     //Open the Database
-    const request = window.indexedDB.open('card-db', 5);
+    const request = window.indexedDB.open('card-db', 6);
 
     //If the database doesn't exist at this version, create it
     request.onupgradeneeded = (event) => {

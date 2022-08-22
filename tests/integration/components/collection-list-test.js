@@ -12,7 +12,8 @@ module('Integration | Component | collection-list', function (hooks) {
 
     await render(hbs`<CollectionList />`);
 
-    assert.dom(this.element).hasText('List of Card Collections Component');
+    assert.dom('div#your-collections').exists();
+    assert.dom('div.form').hasText("+ Add Collection");
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +22,6 @@ module('Integration | Component | collection-list', function (hooks) {
       </CollectionList>
     `);
 
-    assert.dom(this.element).includesText('template block text');
+    assert.dom(this.element).hasText("+ Add Collection");
   });
 });

@@ -10,29 +10,7 @@ export function getCards(collection) {
     const request = window.indexedDB.open('card-db', dbVersion);
 
     //If the database doesn't exist at this version, create it
-    request.onupgradeneeded = (event) => {
-      db = event.target.result;
-
-      //get rid of existing stores to avoid conflict
-      while (db.objectStoreNames.length > 0) {
-        db.deleteObjectStore(db.objectStoreNames.item(0));
-      }
-
-      const objectStore = db.createObjectStore('cards', {
-        autoIncrement: true,
-      });
-      const locationStore = db.createObjectStore('locations', {
-        autoIncrement: true,
-      });
-
-      //make sure locations starts with Unsorted
-      locationStore.add('unsorted');
-
-      //Add index for name and location in the cards
-      objectStore.createIndex('searchName', 'searchName', { unique: false });
-      objectStore.createIndex('location', 'location', { unique: false });
-      locationStore.createIndex('location', '', { unique: true });
-    };
+    request.onupgradeneeded = (event) => {upgradeDB(event)};
     request.onerror = () => {
       console.error('no indexed db');
     };
@@ -218,4 +196,28 @@ export async function addCard(cardObject) {
       callback(false);
     };
   });
+}
+
+export function upgradeDB(event){
+  let db = event.target.result;
+
+  //get rid of existing stores to avoid conflict
+  while (db.objectStoreNames.length > 0) {
+    db.deleteObjectStore(db.objectStoreNames.item(0));
+  }
+
+  const objectStore = db.createObjectStore('cards', {
+    autoIncrement: true,
+  });
+  const locationStore = db.createObjectStore('locations', {
+    autoIncrement: true,
+  });
+
+  //make sure locations starts with Unsorted
+  locationStore.add('unsorted');
+
+  //Add index for name and location in the cards
+  objectStore.createIndex('searchName', 'searchName', { unique: false });
+  objectStore.createIndex('location', 'location', { unique: false });
+  locationStore.createIndex('location', '', { unique: true });
 }

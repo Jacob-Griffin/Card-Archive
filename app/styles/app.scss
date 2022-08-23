@@ -175,6 +175,41 @@ p {
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
 }
+/*
+  My Text/Layout
+*/
+
+.centered{
+  display:flex;
+  justify-content: center;
+  margin-bottom:20px;
+  margin-top:10px;
+}
+
+.main-header{
+  margin-top:30px;
+  font-size:3rem;
+}
+
+.link-stack{
+  display:flex;
+  flex-direction: column;
+  height:6rem;
+  width:100%;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+
+  .button{
+    width:100%;
+    max-width: 400px;
+  }
+}
+
+/*
+  My Components
+*/
 
 .collection{
   display:flex;
@@ -200,6 +235,16 @@ p {
   display:block;
 }
 
+//For card elements that appear on the search page
+.has-result{
+  height: 280px !important;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+//Applies to all input forms/unsort/etc.
 .form{
   border:solid 4px dodgerblue !important;
   border-radius:10px;
@@ -235,7 +280,6 @@ p {
   }
 }
 
-
 .unsort{
   --color: #99aacc;
   border:solid 4px var(--color) !important;
@@ -248,13 +292,6 @@ p {
   p{
     color:var(--color) 
   }
-}
-
-.centered{
-  display:flex;
-  justify-content: center;
-  margin-bottom:20px;
-  margin-top:10px;
 }
 
 #search-bar-wrapper{
@@ -277,16 +314,10 @@ p {
   background-position-y: 5px;
 }
 
-#result-container{
-  height:0;
-  width:100%;
-  margin:0;
-  padding:0;
-}
-
+//Displayed when searching in the "add cards" form
 #add-results{
   display:none;
-  position:relative;
+  position:absolute;
   top:0;
   left:0;
   width:20vw;
@@ -294,61 +325,16 @@ p {
   z-index: 2;
 }
 
+//Don't show the results if there are no results
 #add-results.show:not(:empty){
   display:block;
 }
 
-#your-collections{
-  display:flex;
-  justify-content: space-evenly;
-  flex-wrap:wrap;
-}
-
-.collection-link{
-  height: 200px;
-  width: 200px;
-  border: solid black 2px;
-  border-radius: 10px;
-  display:flex;
-  flex-direction: column;
-  align-items:center;
+#result-container{
   position:relative;
 }
 
-.collection-link:not(.form) button{
-  display:none;
-}
-
-.collection-link:hover button{
-  display:block;
-}
-
-.collection-drop-icon{
-  height: 250px;
-  width: 175px;
-  margin-top: 10px;
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  h1{
-    font-size:4rem;
-  }
-}
-
-.delete-item{
-  background-color: #c54;
-  color: crimson;
-  position:absolute;
-  top: 10px;
-  right: 10px;
-  border: 1px solid white;
-  border-radius: 5px;
-  height: 2rem;
-  width: 2rem;
-}
-
+//Individual styling on the results
 .ygopro-result{
   background-color: white;
   border-bottom: solid 1px black;
@@ -370,14 +356,68 @@ p {
   background-color:#AAA;
 }
 
-.has-result{
-  height: 280px !important;
+//CollectionList
+#your-collections{
+  display:flex;
+  justify-content: space-evenly;
+  flex-wrap:wrap;
+}
+
+//Single Collection Box
+.collection-link{
+  height: 200px;
+  width: 200px;
+  border: solid black 2px;
+  border-radius: 10px;
   display:flex;
   flex-direction: column;
-  justify-content: flex-end;
+  align-items:center;
+  position:relative;
+}
+
+//Toggle to only show delete button when hovering
+.collection-link:not(.form) button{
+  display:none;
+}
+
+.collection-link:hover button{
+  display:block;
+}
+
+//Space for the folder icon on a collection
+.collection-drop-icon{
+  height: 250px;
+  width: 175px;
+  margin-top: 10px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1{
+    font-size:4rem;
+  }
+}
+
+//Button for deleting a card or collection
+.delete-item{
+  background-color: rgb(229, 140, 126);
+  color: rgb(164, 12, 12);
+  position:absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid white;
+  border-radius: .875rem;
+  height: 1.75rem;
+  width: 1.75rem;
+  display:flex;
+  justify-content: center;
   align-items: center;
 }
 
+/*
+  End My Components
+*/
 
 .results {
   margin-top: -10px;
@@ -664,10 +704,4 @@ p {
   margin: -1px; padding: 0; border: 0;
 }
 
-.link-stack{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 180px;
-  width: 250px;
-}
+

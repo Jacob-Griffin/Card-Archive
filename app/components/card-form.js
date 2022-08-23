@@ -11,6 +11,7 @@ export default class CardFormComponent extends Component {
   @tracked resultArea = document.getElementById('add-results');
   @tracked maxResults = 5;
   @tracked cardData = {};
+  @tracked clickListener;
 
   @service store;
 
@@ -71,11 +72,21 @@ export default class CardFormComponent extends Component {
 
   constructor(owner, args) {
     super(owner, args);
-    document.addEventListener('click', this.handleDocClick);
+    this.clickListener = document.addEventListener('click', this.handleDocClick);
   }
 
   @action
   handleDocClick(event) {
+    //If we clicked on a link, get rid of the event listener
+    if(event.target.tag == 'a'){
+      document.removeEventListener(this.clickListener);
+    }
+    
+    //short circuit if 
+    if(document.getElementById('input-focus-group') == null){
+      return;
+    }
+
     if (document.getElementById('input-focus-group').contains(event.target)) {
       this.resultArea.classList.add('show');
     } else {

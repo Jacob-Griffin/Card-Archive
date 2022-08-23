@@ -18,7 +18,7 @@ module('Acceptance | card archive', function (hooks) {
 
     //Home page should have header and two links
     assert.strictEqual(currentURL(), '/');
-    assert.dom('.page-header').hasText('Welcome to Card Archive');
+    assert.dom('.main-header').hasText('Welcome to Card Archive');
 
     assert.dom('.link-stack .button[href="/cards"]').hasText('Your Cards');
     assert.dom('.link-stack .button[href="/search"]').hasText('Search Cards');

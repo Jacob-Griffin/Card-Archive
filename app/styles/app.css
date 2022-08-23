@@ -161,6 +161,39 @@ p {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+/*
+  My Text/Layout
+*/
+.centered {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.main-header {
+  margin-top: 30px;
+  font-size: 3rem;
+}
+
+.link-stack {
+  display: flex;
+  flex-direction: column;
+  height: 6rem;
+  width: 100%;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.link-stack .button {
+  width: 100%;
+  max-width: 400px;
+}
+
+/*
+  My Components
+*/
 .collection {
   display: flex;
   flex-wrap: wrap;
@@ -183,6 +216,14 @@ p {
 
 .card:hover button {
   display: block;
+}
+
+.has-result {
+  height: 280px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .form {
@@ -230,13 +271,6 @@ p {
   color: var(--color);
 }
 
-.centered {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  margin-top: 10px;
-}
-
 #search-bar-wrapper {
   display: flex;
   justify-content: center;
@@ -257,16 +291,9 @@ p {
   background-position-y: 5px;
 }
 
-#result-container {
-  height: 0;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 #add-results {
   display: none;
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 20vw;
@@ -276,6 +303,29 @@ p {
 
 #add-results.show:not(:empty) {
   display: block;
+}
+
+#result-container {
+  position: relative;
+}
+
+.ygopro-result {
+  background-color: white;
+  border-bottom: solid 1px black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ygopro-result h5 {
+  padding-left: 10px;
+}
+.ygopro-result img {
+  height: 80px;
+  margin: 5px;
+}
+
+.ygopro-result:hover {
+  background-color: #AAA;
 }
 
 #your-collections {
@@ -317,44 +367,23 @@ p {
 }
 
 .delete-item {
-  background-color: #c54;
-  color: crimson;
+  background-color: rgb(229, 140, 126);
+  color: rgb(164, 12, 12);
   position: absolute;
   top: 10px;
   right: 10px;
   border: 1px solid white;
-  border-radius: 5px;
-  height: 2rem;
-  width: 2rem;
-}
-
-.ygopro-result {
-  background-color: white;
-  border-bottom: solid 1px black;
+  border-radius: 0.875rem;
+  height: 1.75rem;
+  width: 1.75rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.ygopro-result h5 {
-  padding-left: 10px;
-}
-.ygopro-result img {
-  height: 80px;
-  margin: 5px;
-}
-
-.ygopro-result:hover {
-  background-color: #AAA;
-}
-
-.has-result {
-  height: 280px !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 
+/*
+  End My Components
+*/
 .results {
   margin-top: -10px;
 }
@@ -632,14 +661,6 @@ p {
   margin: -1px;
   padding: 0;
   border: 0;
-}
-
-.link-stack {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 180px;
-  width: 250px;
 }
 
 /*# sourceMappingURL=app.css.map */

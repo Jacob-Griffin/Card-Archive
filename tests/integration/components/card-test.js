@@ -30,7 +30,7 @@ module('Integration | Component | card', function (hooks) {
 
     assert.dom('div').hasClass('card');
     assert.dom('.card').isVisible();
-    assert.dom('.card').hasText('');
+    assert.dom('.card').hasText('X');
     assert.dom('.card').hasStyle({
       'background-image':
         'url("https://storage.googleapis.com/ygoprodeck.com/pics/56196385.jpg")',

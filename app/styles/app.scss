@@ -189,6 +189,15 @@ p {
   margin-bottom: 10px;
   background-repeat:no-repeat;
   background-size: 173px 250px;
+  position: relative;
+}
+
+.card button{
+  display:none;
+}
+
+.card:hover button{
+  display:block;
 }
 
 .form{
@@ -226,40 +235,18 @@ p {
   }
 }
 
-.control-row{
 
-  display:flex;
-  flex-basis:100%;
-  justify-content: center;
-  gap: 30px;
+.unsort{
+  --color: #99aacc;
+  border:solid 4px var(--color) !important;
 
-
-  .delete{
-    --color: crimson;
-    border:solid 4px var(--color) !important;
-
-    h1{
-      color: var(--color) ;
-      height:4rem;
-    }
-
-    p{
-      color:var(--color) 
-    }
+  h1{
+    color: var(--color) ;
+    height:4rem;
   }
 
-  .unsort{
-    --color: #99aacc;
-    border:solid 4px var(--color) !important;
-
-    h1{
-      color: var(--color) ;
-      height:4rem;
-    }
-
-    p{
-      color:var(--color) 
-    }
+  p{
+    color:var(--color) 
   }
 }
 
@@ -328,6 +315,14 @@ p {
   position:relative;
 }
 
+.collection-link:not(.form) button{
+  display:none;
+}
+
+.collection-link:hover button{
+  display:block;
+}
+
 .collection-drop-icon{
   height: 250px;
   width: 175px;
@@ -342,7 +337,7 @@ p {
   }
 }
 
-.delete-collection{
+.delete-item{
   background-color: #c54;
   color: crimson;
   position:absolute;

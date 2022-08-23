@@ -10,13 +10,13 @@ module('Integration | Component | collection', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Collection @displayform="true"/>`);
+    await render(hbs`<Collection @search={{false}}/>`);
 
-    assert.dom('div.card.form').exists();
+    assert.dom('div.card.form.add').exists();
 
-    await render(hbs`<Collection />`);
+    await render(hbs`<Collection @search={{true}}/>`);
 
-    assert.dom('div.card.add').doesNotExist();
+    assert.dom('div.card.form.add').doesNotExist();
 
     // Template block usage:
     await render(hbs`

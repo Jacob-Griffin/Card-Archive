@@ -16,9 +16,9 @@ module('Integration | Component | unsort-card', function (hooks) {
 
     // Template block usage:
     await render(hbs`
-      <DeleteCard>
+      <UnsortCard>
         template block text
-      </DeleteCard>
+      </UnsortCard>
     `);
 
     assert.dom(this.element).doesNotIncludeText('template block text');

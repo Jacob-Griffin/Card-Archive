@@ -1,14 +1,9 @@
 <div class="collection" id="{{@collection}}">
     {{#if this.isNotSearch}}
-        <div class="control-row">
-            {{#if this.isNotUnsorted}}
-                <UnsortCard />
-            {{/if}}
-            <DeleteCard />
-            {{#if @displayform}}
-                <CardForm @collection="{{@collection}}"></CardForm>
-            {{/if}}
-        </div>
+        {{#if this.isNotUnsorted}}
+            <UnsortCard />
+        {{/if}}
+        <CardForm @collection="{{@collection}}"></CardForm>
     {{/if}}
     {{#each @data as |item|}}
         <Card @search={{@search}} @drag={{this.isNotSearch}} @card={{item}}/>

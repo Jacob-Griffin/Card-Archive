@@ -1,3 +1,4 @@
+import { addCard } from 'card-archive/helpers/getcards';
 import config from '../../config/environment';
 
 const dbVersion = config.APP.dbVersion;
@@ -18,4 +19,21 @@ export async function clearDatabase() {
       callback();
     };
   });
+}
+
+export async function addDummyCard(){
+  const dummyCard = {
+    id: 56196385,
+    name: 'Tri-Brigade Kitt',
+    type: 'Effect Monster',
+    images: {
+      id: 56196385,
+      image_url:
+        'https://storage.googleapis.com/ygoprodeck.com/pics/56196385.jpg',
+      image_url_small:
+        'https://storage.googleapis.com/ygoprodeck.com/pics_small/56196385.jpg',
+    },
+    location: 'unsorted',
+  };
+  return addCard(dummyCard);
 }

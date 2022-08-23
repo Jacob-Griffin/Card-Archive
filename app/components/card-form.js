@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
-import { addCard } from '../helpers/getcards';
+import { addCard, deleteCard } from '../helpers/getcards';
 
 export default class CardFormComponent extends Component {
   @tracked timer;
@@ -101,16 +101,30 @@ export default class CardFormComponent extends Component {
   @action
   createCard(data) {
     const card = document.createElement('div');
-    const imgurlString = `url(${data.images.image_url})`;
+    const button = document.createElement('button');
+
+    button.classList.add('delete-item');
+    button.type='button';
+    button.innerHTML = "X";
+
     card.id = `card-${data.key}`;
     card.classList.add('card');
-    card.style.backgroundImage = imgurlString;
+    card.style.backgroundImage = `url(${data.images.image_url})`;
     card.setAttribute('draggable', true);
     card.addEventListener('dragstart', (event) => {
       this.readyData(event, data);
     });
 
+    card.appendChild(button);
     document.getElementById(this.args.collection).appendChild(card);
+    button.addEventListener('click',()=>{this.deleteNewCard(data.key)});
+  }
+
+  @action
+  deleteNewCard(key){
+    const card = document.getElementById(`card-${key}`);
+    card.parentElement.removeChild(card);
+    deleteCard(key);
   }
 
   @action

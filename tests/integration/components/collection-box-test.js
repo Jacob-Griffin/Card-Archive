@@ -15,7 +15,7 @@ module('Integration | Component | collection-box', function (hooks) {
     assert.dom(this.element).includesText('Unsorted Collection');
     assert.dom('div').hasClass('collection-link');
     assert.dom('div.collection-drop-icon').exists();
-    assert.dom('button.delete-collection').exists();
+    assert.dom('button.delete-item').exists();
     assert.dom('a[href="collection/unsorted_collection"]').exists();
 
     // Template block usage:

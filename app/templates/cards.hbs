@@ -1,4 +1,4 @@
 <h1 class="centered">Your Cards</h1>
-<CollectionList @collections={{@model.locations}}/>
+<CollectionList @collections={{@model.locations}} @controller={{this}}/>
 <h2 class="centered">Unsorted Cards</h2>
 <Collection @displayform={{true}} @collection="unsorted" @data={{@model.cards}}/>

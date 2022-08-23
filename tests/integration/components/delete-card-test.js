@@ -12,7 +12,7 @@ module('Integration | Component | delete-card', function (hooks) {
 
     await render(hbs`<DeleteCard />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom(this.element).hasText('🗑 Delete Card');
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module('Integration | Component | delete-card', function (hooks) {
       </DeleteCard>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).doesNotIncludeText('template block text');
   });
 });

@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
+import { addCard } from '../helpers/getcards';
 
 export default class CardFormComponent extends Component {
   @tracked timer;
@@ -58,7 +59,7 @@ export default class CardFormComponent extends Component {
           currentResult.setAttribute('class', 'ygopro-result');
           currentResult.innerHTML = `<h5>${card.name}</h5><img src='${card.card_images[0].image_url_small}' class='result-image'/>`;
           currentResult.addEventListener('click', () => {
-            this.addCard(card.id);
+            this.addSelectedCard(card.id);
           });
 
           //Add that child to the search results base node
@@ -83,24 +84,18 @@ export default class CardFormComponent extends Component {
   }
 
   @action
-  addCard(id) {
-    let cardObject = { ...this.cardData[id], location: this.args.collection };
+  addSelectedCard(id) {
+    let cardObject = {
+      ...this.cardData[id],
+      location: this.args.collection,
+      searchName: this.cardData[id].name.toUpperCase(),
+    };
 
-    let db;
-    const request = window.indexedDB.open('card-db');
-    request.onerror = () => {
-      console.error('no indexed db');
-    };
-    request.onsuccess = (event) => {
-      db = event.target.result;
-      const transaction = db.transaction(['cards'], 'readwrite');
-      const objectStore = transaction.objectStore('cards');
-      const outputRequest = objectStore.add(cardObject);
-      outputRequest.onsuccess = (event) => {
-        cardObject.key = event.target.result;
+    addCard(cardObject).then((didSucceed) => {
+      if (didSucceed) {
         this.createCard(cardObject);
-      };
-    };
+      }
+    });
   }
 
   @action
@@ -111,16 +106,15 @@ export default class CardFormComponent extends Component {
     card.classList.add('card');
     card.style.backgroundImage = imgurlString;
     card.setAttribute('draggable', true);
-    card.addEventListener('dragstart',(event)=>{this.readyData(event,data)});
+    card.addEventListener('dragstart', (event) => {
+      this.readyData(event, data);
+    });
 
     document.getElementById(this.args.collection).appendChild(card);
   }
 
   @action
-  readyData(event,cardData) {
-    return event.dataTransfer.setData(
-      'text/data',
-      JSON.stringify(cardData)
-    );
+  readyData(event, cardData) {
+    return event.dataTransfer.setData('text/data', JSON.stringify(cardData));
   }
 }

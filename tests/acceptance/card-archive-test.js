@@ -12,7 +12,6 @@ import { clearDatabase } from '../helpers/clearIndexedDB';
 
 module('Acceptance | card archive', function (hooks) {
   setupApplicationTest(hooks);
-
   test('visiting /', async function (assert) {
     await visit('/');
     await clearDatabase();
@@ -58,24 +57,24 @@ module('Acceptance | card archive', function (hooks) {
 
     await waitFor('.collection-link:not(.form)');
 
-    assert.dom('.collection-link:not(.form)').hasText('Test Collection');
+    assert.dom('.collection-link:not(.form)').includesText('Test Collection');
     assert
-      .dom('.collection-link a[href="/collection/test-collection"]')
+      .dom('.collection-link a[href$="collection/test_collection"]')
       .exists();
+
+    //Check that the page for the collection we just created exists
+    await visit('/collection/test_collection');
+
+    assert.dom('.card.form').exists();
   });
-  test('check collection pages', async function (assert) {
+  test('check default collection pages', async function (assert) {
     //check the unsorted collection page for the add card (working collection)
     await visit('/collection/unsorted');
 
     assert.dom('.card.form').exists();
 
-    //Check that the page for the collection we just created exists
-    await visit('/collection/test-collection');
-
-    assert.dom('.card.form').exists();
-
     //Check that other collections don't exist;
-    await visit('/collection/fake-collection');
+    await visit('/collection/fake_collection');
 
     assert.dom('.card.form').doesNotExist();
     assert

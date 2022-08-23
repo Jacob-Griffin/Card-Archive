@@ -38,7 +38,7 @@ module('Integration | Component | card', function (hooks) {
 
     // Template block usage:
     await render(hbs`
-      <Card>
+      <Card @card={{this.card}}>
         template block text
       </Card>
     `);

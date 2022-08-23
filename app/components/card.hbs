@@ -1,2 +1,2 @@
-<div class="card" id="card-{{@card.key}}" style="background-image:url({{@card.images.image_url}})" draggable="{{@drag}}" card-key="{{@card.key}}" {{on "dragstart" this.readyData}}>
+<div class="card" id="card-{{@card.key}}" style={{verifyImage @card.images.image_url}} draggable="{{@drag}}" card-key="{{@card.key}}" {{on "dragstart" this.readyData}}>
 </div>

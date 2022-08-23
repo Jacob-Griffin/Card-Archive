@@ -10,13 +10,13 @@ module('Integration | Component | collection-box', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<CollectionBox @collection='unsorted-collection'/>`);
+    await render(hbs`<CollectionBox @collection='unsorted_collection'/>`);
 
-    assert.dom(this.element).hasText('Unsorted Collection');
+    assert.dom(this.element).includesText('Unsorted Collection');
     assert.dom('div').hasClass('collection-link');
-    assert.dom('img').hasAttribute('src');
-    assert.dom('img[src="/images/cardSlot.png"]').exists();
-    assert.dom('a[href="collection/unsorted-collection"]').exists();
+    assert.dom('div.collection-drop-icon').exists();
+    assert.dom('button.delete-collection').exists();
+    assert.dom('a[href="collection/unsorted_collection"]').exists();
 
     // Template block usage:
     await render(hbs`

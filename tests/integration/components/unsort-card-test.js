@@ -12,15 +12,15 @@ module('Integration | Component | unsort-card', function (hooks) {
 
     await render(hbs`<UnsortCard />`);
 
-    assert.dom(this.element).hasText('');
+    assert.dom(this.element).hasText('↑ Move to Unsorted');
 
     // Template block usage:
     await render(hbs`
-      <UnsortCard>
+      <DeleteCard>
         template block text
-      </UnsortCard>
+      </DeleteCard>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).doesNotIncludeText('template block text');
   });
 });

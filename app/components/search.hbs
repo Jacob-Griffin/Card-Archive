@@ -1,0 +1,5 @@
+<input type="text" id="search-bar" {{on "input" this.bufferInput}}/>
+{{#if this.emptyresult}}
+    <p id="no-results">No cards found matching "{{this.query}}"</p>
+{{/if}}
+<Collection @search={{true}} @collection='results' @data={{this.cardList}} />

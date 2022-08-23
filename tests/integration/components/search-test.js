@@ -3,26 +3,22 @@ import { setupRenderingTest } from 'card-archive/tests/helpers';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | collection', function (hooks) {
+module('Integration | Component | search', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Collection @displayform="true"/>`);
+    await render(hbs`<Search />`);
 
-    assert.dom('div.card.form').exists();
-
-    await render(hbs`<Collection />`);
-
-    assert.dom('div.card.add').doesNotExist();
+    assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
-      <Collection>
+      <Search>
         template block text
-      </Collection>
+      </Search>
     `);
 
     assert.dom(this.element).doesNotIncludeText('template block text');

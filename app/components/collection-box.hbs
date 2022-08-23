@@ -1,4 +1,7 @@
 <div class="collection-link" destination="{{@collection}}" {{on "drop" this.handleDrop}} {{on "dragover" this.enableDrag}}>
-    <img class="collection-image" src="/images/cardSlot.png"/>
+    <button class="delete-collection" id="delete-{{@collection}}" type="button" {{on "click" this.deleteThis}}>X</button>
+    <div class="collection-drop-icon">
+        <h1>📂</h1>
+    </div>
     <h3><a href="collection/{{@collection}}" >{{titleCase @collection}}</a></h3>
 </div>

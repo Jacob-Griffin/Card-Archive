@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { sortCard } from '../helpers/getcards';
+import { deleteCollection, sortCard } from '../helpers/getcards';
 import { titleCase } from '../helpers/titleCase';
 
 export default class CollectionBoxComponent extends Component {
@@ -19,10 +19,19 @@ export default class CollectionBoxComponent extends Component {
     cardElement.parentElement.removeChild(cardElement);
 
     let destinationElement = event.target;
-    if (destinationElement.tagName !== 'div') {
-      destinationElement = event.target.parentElement;
+    while (!destinationElement.classList.contains('collection-link')) {
+      destinationElement = destinationElement.parentElement;
     }
 
     sortCard(card.key, destinationElement.getAttribute('destination'));
+    console.log(destinationElement.getAttribute('destination'));
+  }
+
+  @action
+  deleteThis(event) {
+    deleteCollection(this.args.collection);
+    const box = event.target.parentElement;
+    box.parentElement.removeChild(box);
+    this.args.controller.triggerReload();
   }
 }

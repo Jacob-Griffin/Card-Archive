@@ -1,8 +1,8 @@
 import { helper } from '@ember/component/helper';
 
 export function unTitleCase(string) {
-  const newString = string.replace(/\W(.)/, (match, p1) => {
-    return `-${p1.toLowerCase()}`;
+  const newString = string.replace(/\s(.)/, (match, p1) => {
+    return `_${p1.toLowerCase()}`;
   });
 
   const finalString = newString.replace(/^(.)/, (match, p1) => {
@@ -12,7 +12,7 @@ export function unTitleCase(string) {
   return finalString;
 }
 export function titleCase(string) {
-  const newString = string.replace(/\-(.)/, (match, p1) => {
+  const newString = string.replace(/\_(.)/, (match, p1) => {
     return ` ${p1.toUpperCase()}`;
   });
 
@@ -22,7 +22,7 @@ export function titleCase(string) {
 }
 
 function titleCaseHelper([string]) {
-  const newString = string.replace(/\-(.)/, (match, p1) => {
+  const newString = string.replace(/\_(.)/, (match, p1) => {
     return ` ${p1.toUpperCase()}`;
   });
 

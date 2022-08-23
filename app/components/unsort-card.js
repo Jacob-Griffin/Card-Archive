@@ -17,6 +17,6 @@ export default class UnsortCardComponent extends Component {
     const cardElement = document.getElementById(`card-${card.key}`);
     cardElement.parentElement.removeChild(cardElement);
 
-    sortCard(card.key,'unsorted');
+    sortCard(card.key, 'unsorted');
   }
 }

@@ -8,6 +8,10 @@ export default class CollectionFormComponent extends Component {
     const collectionName = unTitleCase(
       document.getElementById('collectionInput').value
     );
+    if (collectionName == '') {
+      return;
+    }
+
     let db;
     const request = window.indexedDB.open('card-db');
     request.onerror = () => {
@@ -19,31 +23,8 @@ export default class CollectionFormComponent extends Component {
       const locationStore = transaction.objectStore('locations');
       const locationRequest = locationStore.add(collectionName);
       locationRequest.onsuccess = (event) => {
-        this.renderCollection(collectionName);
+        this.args.controller.triggerReload();
       };
     };
-  }
-
-  @action
-  renderCollection(name) {
-    const collection = document.createElement('div');
-    const image = document.createElement('img');
-    const title = document.createElement('h3');
-    const link = document.createElement('a');
-
-    collection.classList.add('collection-link');
-
-    image.src = '/images/cardSlot.png';
-    image.classList.add('collection-image');
-
-    link.innerHTML = titleCase(name);
-    link.href = `/collection/${name}`;
-
-    title.appendChild(link);
-
-    collection.appendChild(image);
-    collection.appendChild(title);
-
-    document.getElementById('your-collections').appendChild(collection);
   }
 }

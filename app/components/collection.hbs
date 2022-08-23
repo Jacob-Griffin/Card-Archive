@@ -11,6 +11,6 @@
         </div>
     {{/if}}
     {{#each @data as |item|}}
-        <Card @drag="true" @card={{item}}/>
+        <Card @search={{@search}} @drag={{this.isNotSearch}} @card={{item}}/>
     {{/each}}
 </div>

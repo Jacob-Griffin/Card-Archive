@@ -242,6 +242,27 @@ p {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+#search-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+#search-bar {
+  width: 100%;
+  max-width: 1000px;
+  height: 2rem;
+  font-size: 1.5rem;
+  padding: 20px;
+  padding-left: 40px;
+  background-image: url("/images/Search_Icon.svg");
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  background-position-x: 5px;
+  background-position-y: 5px;
 }
 
 #result-container {
@@ -324,6 +345,14 @@ p {
 
 .ygopro-result:hover {
   background-color: #AAA;
+}
+
+.has-result {
+  height: 280px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .results {

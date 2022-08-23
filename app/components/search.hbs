@@ -1,4 +1,7 @@
-<input type="text" id="search-bar" {{on "input" this.bufferInput}}/>
+<div id="search-bar-wrapper">
+    <input type="search" id="search-bar" {{on "input" this.bufferInput}}/>
+</div>
+
 {{#if this.emptyresult}}
     <p id="no-results">No cards found matching "{{this.query}}"</p>
 {{/if}}

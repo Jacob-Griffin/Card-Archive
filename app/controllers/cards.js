@@ -11,6 +11,12 @@ export default class CardsController extends Controller {
     
     @action
     triggerReload(){
+        //clear any cards that were generated before reloading the model
+        const tempCards = document.getElementsByClassName('created-card');
+        while(tempCards.length > 0){
+            const card = tempCards.item(0);
+            card.parentElement.removeChild(card);
+        }
         this.send("reloadModel");
     }
 }

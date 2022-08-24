@@ -120,6 +120,7 @@ export default class CardFormComponent extends Component {
 
     card.id = `card-${data.key}`;
     card.classList.add('card');
+    card.classList.add('created-card');
     card.style.backgroundImage = `url(${data.images.image_url})`;
     card.setAttribute('draggable', true);
     card.addEventListener('dragstart', (event) => {

@@ -1,14 +1,12 @@
-<div class="card form add">
-    <h1>+</h1>
+<div class="card form add bg-sky-100 dark:bg-slate-500 shadow-lg shadow-slate-800 flex flex-col justify-center items-center rounded-lg border-4 border-blue-500 w-44 h-64">
+    <h1 class="text-4xl text-blue-400">+</h1>
     <p>Add Cards</p>
-    <div id="input-focus-group">
-        <input type="text" placeholder="Search Cards" id="cardSearch" {{on "input" this.manageBuffer}}/>
-        <div id="result-container">
-            <div id="add-results"></div>
-        </div>
+    <div class="p-2 w-full" id="input-focus-group">
+        <input type="text" placeholder="Search Cards" id="cardSearch" class="outline outline-1 outline-black dark:outline-none w-full text-center text-black rounded-lg" {{on "input" this.manageBuffer}}/>
+        <ResultList @results={{this.cardData}} @collection={{@collection}} @controller={{@controller}} @hasFocus={{this.showingResults}}/>
     </div>
-    <label for="keySelect">Search By: </label>
-    <select id="keySelect" {{on "change" this.changeEvent}}>
+    <label for="keySelect" class="pb-2">Search By: </label>
+    <select id="keySelect" class="p-1 outline outline-1 outline-black dark:outline-none text-black rounded-md" {{on "change" this.changeEvent}}>
         <option value="fname">Name</option>
         <option value="desc">Effect</option>
     </select>

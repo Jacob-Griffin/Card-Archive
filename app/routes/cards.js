@@ -5,7 +5,7 @@ import { action } from '@ember/object';
 
 export default class AddCardRoute extends Route {
   @action
-  reloadModel(){
+  reloadModel() {
     this.refresh();
   }
 

@@ -1,8 +1,8 @@
-<div id="search-bar-wrapper">
-    <input type="search" id="search-bar" {{on "input" this.bufferInput}}/>
+<div id="search-bar-wrapper" class="flex flex-col justify-center items-center">
+    <input type="search" id="search-bar" class="w-3/6 max-w-5xl p-1 pl-10 mt-10 mb-4 text-black text-lg rounded-2xl border-1 border-black border dark:border-none" {{on "input" this.bufferInput}}/>
 </div>
 
 {{#if this.emptyresult}}
-    <p id="no-results">No cards found matching "{{this.query}}"</p>
+    <p id="no-results" class="mt-4 w-full text-center text-xl italic">No cards found matching "{{this.query}}"</p>
 {{/if}}
 <Collection @search={{true}} @collection='results' @data={{this.cardList}} />

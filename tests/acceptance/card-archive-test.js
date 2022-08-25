@@ -81,21 +81,21 @@ module('Acceptance | card archive', function (hooks) {
       .dom(this.element)
       .includesText('Collection "Fake Collection" not found');
   });
-  test('visit /search', async function(assert){
+  test('visit /search', async function (assert) {
     await addDummyCard();
 
     await visit('/search');
 
     assert.dom('.card').doesNotExist();
 
-    await fillIn('#search-bar','tri-');
+    await fillIn('#search-bar', 'tri-');
 
-    await waitFor('.card',3000);
+    await waitFor('.card', 3000);
     assert.dom('.card').includesText('In: Unsorted');
 
-    await fillIn('#search-bar','oops');
+    await fillIn('#search-bar', 'oops');
 
-    await waitFor('#no-results',3000);
-    assert.dom('#no-results').hasText('No cards found matching \"oops\"');
+    await waitFor('#no-results', 3000);
+    assert.dom('#no-results').hasText('No cards found matching "oops"');
   });
 });

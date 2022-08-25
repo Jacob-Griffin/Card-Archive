@@ -30,8 +30,6 @@ export default class CollectionBoxComponent extends Component {
   @action
   deleteThis(event) {
     deleteCollection(this.args.collection);
-    const box = event.target.parentElement;
-    box.parentElement.removeChild(box);
     this.args.controller.triggerReload();
   }
 }

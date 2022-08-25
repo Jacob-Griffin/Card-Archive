@@ -10,7 +10,9 @@ export function getCards(collection) {
     const request = window.indexedDB.open('card-db', dbVersion);
 
     //If the database doesn't exist at this version, create it
-    request.onupgradeneeded = (event) => {upgradeDB(event)};
+    request.onupgradeneeded = (event) => {
+      upgradeDB(event);
+    };
     request.onerror = () => {
       console.error('no indexed db');
     };
@@ -198,7 +200,7 @@ export async function addCard(cardObject) {
   });
 }
 
-export function upgradeDB(event){
+export function upgradeDB(event) {
   let db = event.target.result;
 
   //get rid of existing stores to avoid conflict

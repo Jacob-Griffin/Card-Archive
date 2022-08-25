@@ -1,4 +1,4 @@
-import { addCard,upgradeDB } from 'card-archive/helpers/getcards';
+import { addCard, upgradeDB } from 'card-archive/helpers/getcards';
 import config from '../../config/environment';
 
 const dbVersion = config.APP.dbVersion;
@@ -7,7 +7,9 @@ export async function clearDatabase() {
   return new Promise((callback) => {
     //Open the Database
     const request = window.indexedDB.open('card-db', dbVersion);
-    request.onupgradeneeded = (event) =>{upgradeDB(event)};
+    request.onupgradeneeded = (event) => {
+      upgradeDB(event);
+    };
     request.onsuccess = (event) => {
       const db = event.target.result;
       const transaction = db.transaction(['cards', 'locations'], 'readwrite');
@@ -22,7 +24,7 @@ export async function clearDatabase() {
   });
 }
 
-export async function addDummyCard(){
+export async function addDummyCard() {
   const dummyCard = {
     id: 56196385,
     name: 'Tri-Brigade Kitt',

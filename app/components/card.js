@@ -6,7 +6,6 @@ import { deleteCard } from '../helpers/getcards';
 
 export default class CardComponent extends Component {
   @tracked cardData = this.args.card;
-  @tracked hasResultClass = (this.args.search)?('has-result'):('');
 
   constructor(owner, args) {
     super(owner, args);
@@ -21,7 +20,7 @@ export default class CardComponent extends Component {
   }
 
   @action
-  deleteThis(event){
+  deleteThis(event) {
     deleteCard(this.args.card.key);
     const card = event.target.parentElement;
     card.parentElement.removeChild(card);

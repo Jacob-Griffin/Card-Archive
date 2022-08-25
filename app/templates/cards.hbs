@@ -1,4 +1,5 @@
-<h1 class="centered">Your Cards</h1>
+<h1 class="w-full text-center text-5xl font-medium mt-4 mb-6">Your Cards</h1>
+<h2 class="w-full text-center text-3xl my-6">Collections</h2>
 <CollectionList @collections={{@model.locations}} @controller={{this}}/>
-<h2 class="centered">Unsorted Cards</h2>
-<Collection @displayform={{true}} @collection="unsorted" @data={{@model.cards}}/>
+<h2 class="w-full text-center text-3xl my-6">Unsorted Cards</h2>
+<Collection @displayform={{true}} @collection="unsorted" @controller={{this}} @data={{@model.cards}}/>

@@ -1,9 +1,9 @@
-<div class="collection" id="{{@collection}}">
+<div class="flex flex-wrap justify-around m-4 mb-56" id="{{@collection}}">
     {{#if this.isNotSearch}}
         {{#if this.isNotUnsorted}}
             <UnsortCard />
         {{/if}}
-        <CardForm @collection="{{@collection}}"></CardForm>
+        <CardForm @collection="{{@collection}}" @controller={{@controller}}></CardForm>
     {{/if}}
     {{#each @data as |item|}}
         <Card @search={{@search}} @drag={{this.isNotSearch}} @card={{item}}/>

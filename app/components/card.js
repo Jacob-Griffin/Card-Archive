@@ -6,6 +6,7 @@ import { deleteCard } from '../helpers/getcards';
 
 export default class CardComponent extends Component {
   @tracked cardData = this.args.card;
+  @tracked isUnsorted = (this.cardData.location == 'unsorted');
 
   constructor(owner, args) {
     super(owner, args);

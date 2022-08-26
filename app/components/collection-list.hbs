@@ -1,6 +1,6 @@
-<div id="your-collections" class="flex justify-center gap-8 items-center">
+<section class="flex justify-center gap-8 items-center">
     <CollectionForm @controller={{@controller}}/>
 {{#each @collections as |collection|}}
     <CollectionBox @collection="{{collection}}" @controller={{@controller}}/>
 {{/each}}
-</div>
+</section>

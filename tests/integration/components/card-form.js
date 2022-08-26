@@ -14,7 +14,7 @@ module('Integration | Component | card-form-mini', function (hooks) {
 
     assert.dom(this.element).includesText('+');
 
-    assert.dom('#cardSearch').hasValue('Search Cards');
+    assert.dom('#card-search').hasValue('Search Cards');
 
     // Template block usage:
     await render(hbs`

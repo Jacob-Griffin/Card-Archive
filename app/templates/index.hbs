@@ -1,12 +1,12 @@
 <h1 class="w-full text-center text-6xl font-semibold py-4">Welcome to Card Archive</h1>
 <p class="w-full text-center text-2xl pt-2 pb-4">A place to manage your trading cards and where you put them</p>
 <p class="w-full text-center text-xl pt-2 pb-10">You are looking at the <strong>Yu-gi-oh</strong> version of this app</p>
-<div class="flex gap-8 flex-col justify-evenly items-center">
+<nav class="flex gap-8 flex-col justify-evenly items-center">
     <LinkTo @route="cards" class="flex justify-center items-center bg-blue-600 hover:bg-blue-700 text-white text-xl w-6/12 max-w-2xl h-16 rounded-xl">Your Cards</LinkTo>
     <LinkTo @route="search" class="flex justify-center items-center bg-blue-600 hover:bg-blue-700 text-white text-xl w-6/12 max-w-2xl h-16 rounded-xl">Search Cards</LinkTo>
-</div>
+</nav>
 <p class="w-full text-center text-xl pt-16 pb-4 font-medium">Disclaimers/notes:</p>
-    <ul class="w-full flex flex-col justify-center items-center gap-4 list-disc">
-        <li class="w-full max-w-xl">This app runs entirely on local storage, so data is not cross-device</li>
-        <li class="w-full max-w-xl">Be careful using this app with a nearly full hard drive - if you run out of space, your browser will delete your archive without asking.</li>
-    </ul>
+<ul class="w-full flex flex-col justify-center items-center gap-4 list-disc">
+    <li class="w-full max-w-xl">This app runs entirely on local storage, so data is not cross-device</li>
+    <li class="w-full max-w-xl">Be careful using this app with a nearly full hard drive - if you run out of space, your browser will delete your archive without asking.</li>
+</ul>

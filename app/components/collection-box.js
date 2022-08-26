@@ -19,7 +19,7 @@ export default class CollectionBoxComponent extends Component {
     cardElement.parentElement.removeChild(cardElement);
 
     let destinationElement = event.target;
-    while (!destinationElement.classList.contains('collection-link')) {
+    while (!destinationElement.tagName == 'A') {
       destinationElement = destinationElement.parentElement;
     }
 

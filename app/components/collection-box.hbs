@@ -1,5 +1,5 @@
-<a href="collection/{{@collection}}" class="z-0 button-holder relative collection-link dark:bg-slate-500 shadow-lg shadow-slate-800 flex flex-col justify-center items-center rounded-lg border-4 border-blue-500 p-2 w-44 h-44" destination="{{@collection}}" {{on "drop" this.handleDrop}} {{on "dragover" this.enableDrag}}>
-    <button class="close-button z-10 rounded-3xl absolute top-2 right-2 bg-white w-6 h-6 flex justify-center items-center" id="delete-{{@collection}}" type="button" {{action "deleteThis" bubbles=false}}></button>
+<a href="collection/{{@collection}}" class="button-holder z-0 relative dark:bg-slate-500 shadow-lg shadow-slate-800 flex flex-col justify-center items-center rounded-lg border-4 border-blue-500 p-2 w-44 h-44" destination="{{@collection}}" {{on "drop" this.handleDrop}} {{on "dragover" this.enableDrag}}>
+    <button class="close-button z-10 rounded-3xl absolute top-2 right-2 bg-white w-6 h-6 flex justify-center items-center" type="button" {{action "deleteThis" bubbles=false}}></button>
     <calcite-icon icon="inbox" scale="l" class="h-16 w-16 mb-2"></calcite-icon>
     <h3 class="text-xl">{{titleCase @collection}}</h3>
 </a>

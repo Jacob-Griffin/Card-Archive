@@ -13,10 +13,9 @@ module('Integration | Component | collection-box', function (hooks) {
     await render(hbs`<CollectionBox @collection='unsorted_collection'/>`);
 
     assert.dom(this.element).includesText('Unsorted Collection');
-    assert.dom('div').hasClass('collection-link');
-    assert.dom('div.collection-drop-icon').exists();
-    assert.dom('button.delete-item').exists();
-    assert.dom('a[href="collection/unsorted_collection"]').exists();
+    assert.dom('calcite-icon').exists();
+    assert.dom('button.close-button').exists();
+    assert.dom('a[href="collection/unsorted_collection"].button-holder').exists();
 
     // Template block usage:
     await render(hbs`

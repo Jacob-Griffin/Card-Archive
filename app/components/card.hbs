@@ -1,5 +1,5 @@
 {{#if @search}}
-    <div class="button-holder relative h-76 w-44 bg-gradient-to-b from-white via-slate-100 to-blue-700 rounded-b-lg shadow-lg shadow-slate-800">
+    <article class="button-holder relative h-76 w-44 bg-gradient-to-b from-white via-slate-100 to-blue-700 rounded-b-lg shadow-lg shadow-slate-800">
         <button class="close-button rounded-3xl absolute top-2 right-2 bg-white w-6 h-6" type="button" {{on "click" this.deleteThis}}></button>
         <img src={{@card.images.image_url}} />
         <h3 class="mt-1 mb-2 w-full text-center text-white">In: 
@@ -9,10 +9,10 @@
                 <a href="/collection/{{@card.location}}" class="text-blue-300">{{titleCase @card.location}}</a>
             {{/if}}
         </h3>
-    </div>
+    </article>
     
 {{else}}
-    <div class="button-holder card w-44 bg-no-repeat bg-contain relative h-64 flex flex-col justify-end items-center shadow-lg shadow-slate-800" id="card-{{@card.key}}" style={{verifyImage @card.images.image_url}} draggable="{{@drag}}" card-key="{{@card.key}}" {{on "dragstart" this.readyData}}>
+    <article class="button-holder card w-44 bg-no-repeat bg-contain relative h-64 flex flex-col justify-end items-center shadow-lg shadow-slate-800" style={{verifyImage @card.images.image_url}} draggable="{{@drag}}" {{on "dragstart" this.readyData}}>
         <button class="close-button rounded-3xl absolute top-2 right-2 bg-white w-6 h-6" type="button" {{on "click" this.deleteThis}}></button>
-    </div>
+    </article>
 {{/if}}

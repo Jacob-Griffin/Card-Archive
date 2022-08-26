@@ -12,11 +12,11 @@ module('Integration | Component | collection', function (hooks) {
 
     await render(hbs`<Collection @search={{false}}/>`);
 
-    assert.dom('div.card.form.add').exists();
+    assert.dom('section section').exists();
 
     await render(hbs`<Collection @search={{true}}/>`);
 
-    assert.dom('div.card.form.add').doesNotExist();
+    assert.dom('section section').doesNotExist();
 
     // Template block usage:
     await render(hbs`

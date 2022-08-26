@@ -23,7 +23,6 @@ export default class ResultListComponent extends Component {
         super(owner,args);
         this.eventAborter = new AbortController();
         document.addEventListener('click',this.handleDocClick,{signal:this.eventAborter.signal});
-
     }
 
     @action
@@ -41,7 +40,7 @@ export default class ResultListComponent extends Component {
 
     @action
     addSelectedCard(event) {
-        const target = (event.target.tagName == "DIV")?(event.target):(event.target.parentElement);
+        const target = (event.target.tagName == "LI")?(event.target):(event.target.parentElement);
         const id = target.id;
 
         let cardObject = {

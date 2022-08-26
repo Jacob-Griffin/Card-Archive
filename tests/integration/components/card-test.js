@@ -28,9 +28,9 @@ module('Integration | Component | card', function (hooks) {
 
     await render(hbs`<Card @card={{this.card}}/>`);
 
-    assert.dom('div').hasClass('card');
+    assert.dom('article').hasClass('card');
     assert.dom('.card').isVisible();
-    assert.dom('.card').hasText('X');
+    assert.dom('.card').hasText('');
     assert.dom('.card').hasStyle({
       'background-image':
         'url("https://storage.googleapis.com/ygoprodeck.com/pics/56196385.jpg")',

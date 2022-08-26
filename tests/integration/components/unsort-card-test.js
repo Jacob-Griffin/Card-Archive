@@ -12,7 +12,9 @@ module('Integration | Component | unsort-card', function (hooks) {
 
     await render(hbs`<UnsortCard />`);
 
-    assert.dom(this.element).hasText('↑ Move to Unsorted');
+    assert.dom(this.element).hasText('Move to Unsorted');
+    assert.dom('a').exists();
+    assert.dom('calcite-icon').exists();
 
     // Template block usage:
     await render(hbs`

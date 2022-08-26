@@ -10,17 +10,22 @@ module('Integration | Component | result-list', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<ResultList />`);
+    this.set('results',{"56196385":{id:"56196385",name:"Tri-Brigade Kitt",images:{image_url_small:""}}});
 
-    assert.dom(this.element).hasText('');
+    await render(hbs`<ResultList @results={{this.results}} />`);
+
+    assert.dom('ul').exists();
+    assert.dom('li h5').hasText(this.results["56196385"].name);
+
+
 
     // Template block usage:
     await render(hbs`
-      <ResultList>
+      <ResultList @results={{this.results}}>
         template block text
       </ResultList>
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).doesNotIncludeText('template block text');
   });
 });

@@ -12,8 +12,9 @@ module('Integration | Component | collection-form', function (hooks) {
 
     await render(hbs`<CollectionForm />`);
 
-    assert.dom(this.element).includesText('+');
-    assert.dom('input#collectionInput').exists();
+    assert.dom(this.element).includesText('Add Collection');
+    assert.dom('calcite-icon[icon="folder-plus"').exists();
+    assert.dom('input#collection-input').exists();
 
     // Template block usage:
     await render(hbs`

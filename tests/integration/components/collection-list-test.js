@@ -12,8 +12,9 @@ module('Integration | Component | collection-list', function (hooks) {
 
     await render(hbs`<CollectionList />`);
 
-    assert.dom('div#your-collections').exists();
-    assert.dom('div.form').hasText('+ Add Collection');
+    assert.dom('section').exists();
+    assert.dom('section').hasText('Add Collection');
+    assert.dom('section calcite-icon[icon="folder-plus"]').exists();
 
     // Template block usage:
     await render(hbs`
@@ -22,6 +23,6 @@ module('Integration | Component | collection-list', function (hooks) {
       </CollectionList>
     `);
 
-    assert.dom(this.element).hasText('+ Add Collection');
+    assert.dom(this.element).hasText('Add Collection');
   });
 });

@@ -6,7 +6,7 @@ export default class CollectionFormComponent extends Component {
   @action
   createCollection() {
     const collectionName = unTitleCase(
-      document.getElementById('collectionInput').value
+      document.getElementById('collection-input').value
     );
     if (collectionName == '') {
       return;

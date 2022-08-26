@@ -1,4 +1,4 @@
-<div class="flex flex-wrap justify-around m-4 mb-56" id="{{@collection}}">
+<section class="flex flex-wrap justify-around m-4 mb-56">
     {{#if this.isNotSearch}}
         {{#if this.isNotUnsorted}}
             <UnsortCard />
@@ -8,4 +8,4 @@
     {{#each @data as |item|}}
         <Card @search={{@search}} @drag={{this.isNotSearch}} @card={{item}}/>
     {{/each}}
-</div>
+</section>

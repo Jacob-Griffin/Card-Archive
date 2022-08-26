@@ -1,32 +1,25 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { service } from '@ember/service';
-import { addCard, deleteCard } from '../helpers/getcards';
 
 export default class CardFormComponent extends Component {
   @tracked timer;
   @tracked query;
   @tracked queryKey;
-  @tracked resultArea = document.getElementById('add-results');
   @tracked maxResults = 5;
   @tracked cardData = {};
   @tracked showingResults = false;
-
-
-  @service store;
 
   @action
   manageBuffer() {
     clearTimeout(this.timer);
     this.timer = setTimeout(this.changeEvent, 1000);
-    this.query = document.getElementById('cardSearch').value;
-    this.queryKey = document.getElementById('keySelect').value;
   }
 
   @action
   changeEvent() {
-    this.queryKey = document.getElementById('keySelect').value;
+    this.query = document.getElementById('card-search').value;
+    this.queryKey = document.getElementById('key-select').value;
 
     //Grab the results
     fetch(

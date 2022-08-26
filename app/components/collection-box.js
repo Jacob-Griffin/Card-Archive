@@ -14,17 +14,13 @@ export default class CollectionBoxComponent extends Component {
     //Get the card's data
     const card = JSON.parse(event.dataTransfer.getData('text/data'));
 
-    //Remove the vard from the page visually
-    const cardElement = document.getElementById(`card-${card.key}`);
-    cardElement.parentElement.removeChild(cardElement);
-
     let destinationElement = event.target;
-    while (!destinationElement.tagName == 'A') {
+    while (destinationElement.tagName != 'A') {
       destinationElement = destinationElement.parentElement;
     }
 
     sortCard(card.key, destinationElement.getAttribute('destination'));
-    console.log(destinationElement.getAttribute('destination'));
+    this.args.controller.triggerReload();
   }
 
   @action

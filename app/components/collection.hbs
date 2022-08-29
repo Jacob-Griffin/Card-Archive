@@ -6,6 +6,6 @@
         <CardForm @collection="{{@collection}}" @controller={{@controller}}></CardForm>
     {{/if}}
     {{#each @data as |item|}}
-        <Card @search={{@search}} @drag={{this.isNotSearch}} @card={{item}}/>
+        <Card @controller={{@controller}} @search={{@search}} @drag={{this.isNotSearch}} @card={{item}}/>
     {{/each}}
 </section>

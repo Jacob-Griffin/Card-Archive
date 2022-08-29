@@ -15,7 +15,7 @@ module('Integration | Component | collection-box', function (hooks) {
     assert.dom(this.element).includesText('Unsorted Collection');
     assert.dom('calcite-icon').exists();
     assert.dom('button.close-button').exists();
-    assert.dom('a[href="collection/unsorted_collection"].button-holder').exists();
+    assert.dom('a[href="collection/unsorted_collection"]').exists();
 
     // Template block usage:
     await render(hbs`

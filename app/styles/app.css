@@ -10,9 +10,6 @@
 }
 
 .close-button{
-    background-image:url("/images/close.svg");
-    background-size:1.5rem;
-    background-repeat: no-repeat;
     display:none;
 }
 

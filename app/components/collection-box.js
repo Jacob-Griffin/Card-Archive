@@ -25,7 +25,6 @@ export default class CollectionBoxComponent extends Component {
 
   @action
   deleteThis(event) {
-    deleteCollection(this.args.collection);
-    this.args.controller.triggerReload();
+    this.args.controller.openDeleteModal(this.args.collection);
   }
 }

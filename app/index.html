@@ -12,8 +12,11 @@
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/card-archive.css">
 
     {{content-for "head-footer"}}
+
+    <script type="module" src="https://js.arcgis.com/calcite-components/1.0.0-beta.91/calcite.esm.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.0.0-beta.91/calcite.css" />
   </head>
-  <body class="dark:bg-slate-600 min-h-screen h-min dark:text-white">
+  <body class="dark:bg-dark-bg min-h-screen h-min dark:text-white calcite-theme-auto">
     {{content-for "body"}}
 
     <script src="{{rootURL}}assets/vendor.js"></script>

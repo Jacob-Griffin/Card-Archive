@@ -1,5 +1,5 @@
-<section class="flex flex-col justify-center items-center">
-    <input type="search" id="search-bar" class="w-3/6 max-w-5xl p-1 pl-10 mt-10 mb-4 text-black text-lg rounded-2xl border-1 border-black border dark:border-none" {{on "input" this.bufferInput}}/>
+<section class="flex justify-center mt-8 w-full p-4">
+    <calcite-input id="search-bar" icon="search" scale="l" class="w-full max-w-3xl" {{on "input" this.bufferInput}}/>
 </section>
 
 {{#if this.emptyresult}}

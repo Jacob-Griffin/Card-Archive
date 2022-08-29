@@ -23,7 +23,6 @@ export default class CardComponent extends Component {
   @action
   deleteThis(event) {
     deleteCard(this.args.card.key);
-    const card = event.target.parentElement;
-    card.parentElement.removeChild(card);
+    this.args.controller.triggerReload();
   }
 }

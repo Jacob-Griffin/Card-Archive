@@ -1,7 +1,9 @@
-<nav class="basis-full bg-blue-600 h-16 text-white flex items-center justify-between p-4">
-    <LinkTo @route="index" class="text-3xl font-semibold">
-        <h1>Card Archive</h1>
-    </LinkTo>
+<nav class="basis-full bg-brand dark:bg-brand-dark h-16 text-white flex items-center justify-between p-4">
+    <h1>
+        <LinkTo @route="index" class="text-3xl font-semibold">
+            Card Archive
+        </LinkTo>
+    </h1>
     <ul class="flex justify-evenly gap-10 text-xl">
         <li><LinkTo @route="cards">
             Cards

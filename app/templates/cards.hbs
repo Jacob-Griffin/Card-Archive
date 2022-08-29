@@ -1,5 +1,11 @@
 <h1 class="w-full text-center text-5xl font-medium mt-4 mb-6">Your Cards</h1>
 <h2 class="w-full text-center text-3xl my-6">Collections</h2>
 <CollectionList @collections={{@model.locations}} @controller={{this}}/>
+<calcite-modal aria-labelledby="modal-title" id="delete-modal" width="s" color="red">
+    <div slot="header" id="modal-title">Confirm Delete</div>
+    <div slot="content">Are you sure you want to delete {{this.toBeDeleted}}? Cards in this collection will be moved to Unsorted.</div>
+    <calcite-button slot="secondary" width="full" appearance="outline">Cancel</calcite-button>
+    <calcite-button slot="primary" width="full" color="red" {{on 'click' this.sendDeleteCollection}}>Delete</calcite-button>
+</calcite-modal>
 <h2 class="w-full text-center text-3xl my-6">Unsorted Cards</h2>
-<Collection @displayform={{true}} @collection="unsorted" @controller={{this}} @data={{@model.cards}}/>
+<Collection @abortSignal={{this.eventAborter}} @collection="unsorted" @controller={{this}} @data={{@model.cards}}/>

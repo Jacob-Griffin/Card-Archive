@@ -254,7 +254,9 @@ export function generateCSV() {
   cards.then((list) => {
     let fileData = '';
     for (let i = 0; i < list.length; i++) {
-      fileData += `${list[i].name},${parseCardType(list[i].type)},${titleCase(list[i].location)},${list[i].id}\n`;
+      fileData += `${list[i].name},${parseCardType(list[i].type)},${titleCase(
+        list[i].location
+      )},${list[i].id}\n`;
     }
     saveFile('card-archive.csv', fileData);
   });
@@ -263,7 +265,10 @@ export function generateCSV() {
 export function saveFile(filename, contents) {
   console.log(contents);
   var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contents));
+  element.setAttribute(
+    'href',
+    'data:text/plain;charset=utf-8,' + encodeURIComponent(contents)
+  );
   element.setAttribute('download', filename);
 
   element.style.display = 'none';
@@ -277,24 +282,24 @@ export function saveFile(filename, contents) {
 export function parseCardType(type) {
   let newType = `${type.split(' ')[0]},`; //For Non-Monster types, remove "Card" from the string
   if (type.includes('Monster')) {
-    let monsterTypeArray = type.split(' ');             //Tokenize monster type
-    monsterTypeArray.pop();                             //Get rid of the last token (Always "Monster")
-    newType = 'Monster,' + monsterTypeArray.join(' ');  //Format it to have Monster in one column, then the specific type in a second one
+    let monsterTypeArray = type.split(' '); //Tokenize monster type
+    monsterTypeArray.pop(); //Get rid of the last token (Always "Monster")
+    newType = 'Monster,' + monsterTypeArray.join(' '); //Format it to have Monster in one column, then the specific type in a second one
   }
   return newType;
 }
 
-export function importCSV(fileData){
+export function importCSV(fileData) {
   let rows = fileData.split('\n');
   let ids = [];
   let names = [];
 
-  for(let i = 0; i < rows.length; i++){
-    const row = rows[i].split(",");
-    
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i].split(',');
+
     //Check for ID
     let idMatch = /,(\d{8}),/.exec(row);
-    if(idMatch != null){
+    if (idMatch != null) {
       ids.push(idMatch[1]);
       continue;
     }

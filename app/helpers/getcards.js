@@ -191,7 +191,7 @@ export async function addCard(cardObject) {
       const outputRequest = objectStore.add(cardObject);
       outputRequest.onsuccess = (event) => {
         cardObject.key = event.target.result;
-        callback(true);
+        callback(cardObject.key);
       };
     };
     request.onerror = () => {
@@ -222,4 +222,85 @@ export function upgradeDB(event) {
   objectStore.createIndex('searchName', 'searchName', { unique: false });
   objectStore.createIndex('location', 'location', { unique: false });
   locationStore.createIndex('location', '', { unique: true });
+}
+
+export function generateCSV() {
+  let db;
+  let cards = new Promise((callback) => {
+    //Open the Database
+    const request = window.indexedDB.open('card-db', dbVersion);
+    request.onsuccess = (event) => {
+      //if connected, update the db variable
+      db = event.target.result;
+
+      //Start a transaction and open stores for locations and cards, where cards are indexed by location
+      const transaction = db.transaction(['cards', 'locations'], 'readwrite');
+      const objectStore = transaction.objectStore('cards');
+
+      //Create an empty array for storing the results of the card search
+      const cardResult = [];
+
+      objectStore.openCursor().onsuccess = (event) => {
+        const cursor = event.target.result;
+        if (cursor) {
+          cardResult.push(cursor.value);
+          cursor.continue();
+        } else {
+          callback(cardResult);
+        }
+      };
+    };
+  });
+  cards.then((list) => {
+    let fileData = '';
+    for (let i = 0; i < list.length; i++) {
+      fileData += `${list[i].name},${parseCardType(list[i].type)},${titleCase(list[i].location)},${list[i].id}\n`;
+    }
+    saveFile('card-archive.csv', fileData);
+  });
+}
+
+export function saveFile(filename, contents) {
+  console.log(contents);
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contents));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
+export function parseCardType(type) {
+  let newType = `${type.split(' ')[0]},`; //For Non-Monster types, remove "Card" from the string
+  if (type.includes('Monster')) {
+    let monsterTypeArray = type.split(' ');             //Tokenize monster type
+    monsterTypeArray.pop();                             //Get rid of the last token (Always "Monster")
+    newType = 'Monster,' + monsterTypeArray.join(' ');  //Format it to have Monster in one column, then the specific type in a second one
+  }
+  return newType;
+}
+
+export function importCSV(fileData){
+  let rows = fileData.split('\n');
+  let ids = [];
+  let names = [];
+
+  for(let i = 0; i < rows.length; i++){
+    const row = rows[i].split(",");
+    
+    //Check for ID
+    let idMatch = /,(\d{8}),/.exec(row);
+    if(idMatch != null){
+      ids.push(idMatch[1]);
+      continue;
+    }
+
+    //If no id match, grab the first column as a card name
+    let cardMatch = /^([^,]+),/.exec(row);
+    names.push(cardMatch);
+  }
 }

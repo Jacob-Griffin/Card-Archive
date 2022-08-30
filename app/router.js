@@ -10,4 +10,5 @@ Router.map(function () {
   this.route('collection', { path: '/collection/:collection_id' });
   this.route('cards');
   this.route('search');
+  this.route('manage');
 });

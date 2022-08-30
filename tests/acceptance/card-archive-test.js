@@ -57,12 +57,10 @@ module('Acceptance | card archive', function (hooks) {
     await fillIn('#collection-input', 'Test Collection');
     await click('button:not(.close-button)');
 
-    await waitFor('a[href^="collection/"');
+    await waitFor('a[href^="collection/"]');
 
-    assert.dom('a[href^="collection/"').includesText('Test Collection');
-    assert
-      .dom('a[href^="collection/test_collection"')
-      .exists();
+    assert.dom('a[href^="collection/"]').includesText('Test Collection');
+    assert.dom('a[href^="collection/test_collection"]').exists();
 
     //Check that the page for the collection we just created exists
     await visit('/collection/test_collection');

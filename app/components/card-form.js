@@ -48,12 +48,12 @@ export default class CardFormComponent extends Component {
   }
 
   @action
-  showResults(){
+  showResults() {
     this.showingResults = true;
   }
 
   @action
-  hideResults(){
+  hideResults() {
     this.showingResults = false;
   }
 }

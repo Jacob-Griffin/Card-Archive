@@ -10,14 +10,18 @@ module('Integration | Component | result-list', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    this.set('results',{"56196385":{id:"56196385",name:"Tri-Brigade Kitt",images:{image_url_small:""}}});
+    this.set('results', {
+      56196385: {
+        id: '56196385',
+        name: 'Tri-Brigade Kitt',
+        images: { image_url_small: '' },
+      },
+    });
 
     await render(hbs`<ResultList @results={{this.results}} />`);
 
     assert.dom('ul').exists();
-    assert.dom('li h5').hasText(this.results["56196385"].name);
-
-
+    assert.dom('li h5').hasText(this.results['56196385'].name);
 
     // Template block usage:
     await render(hbs`

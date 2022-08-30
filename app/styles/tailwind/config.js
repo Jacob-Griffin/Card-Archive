@@ -5,14 +5,14 @@ module.exports = {
   content: ['./app/**/*.{hbs,js,html}'],
   theme: {
     extend: {},
-    colors:{
+    colors: {
       ...colors,
-      'brand': "#007AC4",
-      'brand-dark': "#009AF2",
-      'shadow':colors.slate["800"],
-      'dark-item':colors.slate["600"],
-      'dark-bg':"#353535",
-    }
+      brand: '#007AC4',
+      'brand-dark': '#009AF2',
+      shadow: colors.slate['800'],
+      'dark-item': colors.slate['600'],
+      'dark-bg': '#353535',
+    },
   },
   plugins: [],
 };

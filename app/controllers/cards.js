@@ -7,17 +7,17 @@ export default class CardsController extends Controller {
     super(owner, args);
   }
 
-  @tracked toBeDeleted = "";
+  @tracked toBeDeleted = '';
 
   @action
-  openDeleteModal(collection){
+  openDeleteModal(collection) {
     this.toBeDeleted = collection;
     let modal = document.getElementById('delete-modal');
-    modal.setAttribute('open',true);
+    modal.setAttribute('open', true);
   }
 
   @action
-  sendDeleteCollection(){
+  sendDeleteCollection() {
     deleteCollection(this.toBeDeleted);
     let modal = document.getElementById('delete-modal');
     modal.removeAttribute('open');

@@ -1,6 +1,6 @@
 <section class="flex justify-center gap-8 items-center">
-    <CollectionForm @controller={{@controller}}/>
+    <CollectionForm @collections={{@collections}} @createCollection={{@createCollection}} />
 {{#each @collections as |collection|}}
-    <CollectionBox @collection="{{collection}}" @controller={{@controller}}/>
+    <CollectionBox @collection="{{collection}}" @collections={{@collections}} @removeCollection={{@removeCollection}} @handleDrop={{@handleDrop}} @preventDefault={{@preventDefault}} />
 {{/each}}
 </section>

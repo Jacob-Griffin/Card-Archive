@@ -1,5 +1,5 @@
 <section class="bg-sky-100 dark:bg-dark-item shadow-lg shadow-slate-800 flex flex-col justify-center items-center rounded-lg border-4 border-brand dark:border-brand-dark p-2 w-44 h-44">
     <calcite-icon icon="folder-plus" scale="l" class="h-12 w-12 mb-2"></calcite-icon>
     <calcite-input type="text" placeholder="New Collection" class="outline outline-1 outline-black dark:outline-none w-full text-center text-black rounded-lg mb-2" id="collection-input"/>
-    <calcite-button width="full" {{on "click" this.createCollection}}>Add Collection</calcite-button>
+    <calcite-button width="full" {{on "click" @createCollection}}>Add Collection</calcite-button>
 </section>

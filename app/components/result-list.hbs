@@ -1,9 +1,9 @@
 {{#if this.hasResults}}
-{{#if this.hasFocus}}
+{{#if @hasFocus}}
     <section class="relative">
         <ul class="absolute z-20 top-1 left-0 max-h-72 w-56 flex flex-col shadow-lg shadow-slate-800 overflow-scroll">
             {{#each this.results as |card|}}
-                <li id={{card.id}} class="h-20 w-full bg-slate-400 flex justify-between p-2 border-b border-black" {{on "click" this.addSelectedCard}}>
+                <li id={{card.id}} class="h-20 w-full bg-slate-400 flex justify-between p-2 border-b border-black" {{action (fn this.addSelectedCard card.id)}}>
                     <h5 class="grow">{{card.name}}</h5>
                     <img src={{card.images.image_url_small}} class="h-16"/>
                 </li>

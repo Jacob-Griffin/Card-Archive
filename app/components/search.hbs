@@ -5,4 +5,8 @@
 {{#if this.emptyresult}}
     <p class="mt-4 w-full text-center text-xl italic">No cards found matching "{{this.query}}"</p>
 {{/if}}
-<Collection @search={{true}} @collection='results' @data={{this.cardList}} />
+<section class="flex flex-wrap justify-around m-4 mb-56">
+{{#each this.cardList as |item|}}
+    <Card @search={{true}} @card={{item}} @removeCard={{@removeCard}} />
+{{/each}}
+</section>

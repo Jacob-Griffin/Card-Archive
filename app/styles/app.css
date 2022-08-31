@@ -2,13 +2,6 @@
 @tailwind componenets;
 @tailwind utilities;
 
-#search-bar{
-    background-image:url("/images/Search_Icon.svg");
-    background-position: .25rem .25rem;
-    background-size:1.75rem;
-    background-repeat: no-repeat;
-}
-
 .close-button{
     display:none;
 }

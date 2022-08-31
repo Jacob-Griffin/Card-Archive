@@ -3,7 +3,7 @@
     <p>Add Cards</p>
     <section class="p-2 w-full" id="input-focus-group">
         <calcite-input type="text" placeholder="Search Cards" id="card-search" {{on "input" this.manageBuffer}}/>
-        <ResultList @results={{this.cardData}} @collection={{@collection}} @controller={{@controller}} @hasFocus={{this.showingResults}}/>
+        <ResultList @results={{@searchResults}} @collection={{@collection}} @hasFocus={{@addCardFocused}} @createCard={{@createCard}} />
     </section>
     <label for="key-select" class="pb-2">Search By: </label>
     <calcite-select id="key-select" {{on "change" this.changeEvent}}>

@@ -3,7 +3,7 @@ import config from '../config/environment';
 
 const dbVersion = config.APP.dbVersion;
 
-export function getCards(collection) {
+export async function getCards(collection) {
   let db;
   return new Promise((callback) => {
     //Open the Database
@@ -113,21 +113,30 @@ export async function searchCards(name) {
   });
 }
 
-export function sortCard(cardKey, collection) {
+export async function sortCard(card, collection) {
   let db;
-  const request = window.indexedDB.open('card-db', dbVersion);
+  return new Promise((callback) => {
+    const request = window.indexedDB.open('card-db', dbVersion);
+    request.onsuccess = (event) => {
+      db = event.target.result;
 
-  request.onsuccess = (event) => {
-    db = event.target.result;
+      const transaction = db.transaction(['cards'], 'readwrite');
+      const cardStore = transaction.objectStore('cards');
 
-    const transaction = db.transaction(['cards'], 'readwrite');
-    const cardStore = transaction.objectStore('cards');
-    cardStore.get(cardKey).onsuccess = (event) => {
-      let cardData = event.target.result;
-      cardData.location = collection;
-      cardStore.put(cardData, cardKey);
+      cardStore.get(card.key).onsuccess = (event) => {
+        let cardData = event.target.result;
+        cardData.location = collection;
+        let putRequest = cardStore.put(cardData, card.key);
+        putRequest.onsuccess = () => {
+          callback(true);
+        };
+        putRequest.onerror = () => {
+          console.log(event.target.error);
+          callback(false);
+        };
+      };
     };
-  };
+  });
 }
 
 export function deleteCard(cardKey) {
@@ -191,11 +200,35 @@ export async function addCard(cardObject) {
       const outputRequest = objectStore.add(cardObject);
       outputRequest.onsuccess = (event) => {
         cardObject.key = event.target.result;
-        callback(cardObject.key);
+        callback(cardObject);
       };
     };
     request.onerror = () => {
       callback(false);
+    };
+  });
+}
+
+export async function addCollection(collectionName) {
+  let db;
+  return new Promise((callback) => {
+    const request = window.indexedDB.open('card-db');
+    request.onerror = (event) => {
+      console.error(event.target.result);
+      callback(false);
+    };
+    request.onsuccess = (event) => {
+      db = event.target.result;
+      const transaction = db.transaction(['locations'], 'readwrite');
+      const locationStore = transaction.objectStore('locations');
+      const locRequest = locationStore.add(collectionName);
+      locRequest.onsuccess = (event) => {
+        callback(true);
+      };
+      locRequest.onerror = (event) => {
+        console.error(event.target.error);
+        callback(false);
+      };
     };
   });
 }

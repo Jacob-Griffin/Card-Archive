@@ -1,6 +1,6 @@
 {{#if @search}}
     <article class="button-holder relative h-76 w-44 bg-gradient-to-b from-white via-slate-100 to-blue-700 rounded-b-lg shadow-lg shadow-slate-800">
-        <calcite-fab class="close-button absolute top-2 right-2" icon='trash' color="red" scale="l" appearance="outline" {{on "click" this.deleteThis}}></calcite-fab>
+        <calcite-fab class="close-button absolute top-2 right-2" icon='trash' color="red" scale="l" appearance="outline" {{action (fn @removeCard @card.key)}}></calcite-fab>
         <img src={{@card.images.image_url}} />
         <h3 class="mt-1 mb-2 w-full text-center text-white">In: 
             {{#if this.isUnsorted}}
@@ -12,7 +12,7 @@
     </article>
     
 {{else}}
-    <article class="button-holder card w-44 bg-no-repeat bg-contain relative h-64 flex flex-col justify-end items-center shadow-lg shadow-slate-800" style={{verifyImage @card.images.image_url}} draggable="{{@drag}}" {{on "dragstart" this.readyData}}>
-        <calcite-fab class="close-button absolute top-2 right-2" icon='trash' color="red" scale="l" appearance="outline" {{on "click" this.deleteThis}}></calcite-fab>
+    <article class="button-holder card w-44 bg-no-repeat bg-contain relative h-64 flex flex-col justify-end items-center shadow-lg shadow-slate-800" style={{verifyImage @card.images.image_url}} draggable="true" {{on "dragstart" (fn @startDrag @card)}}>
+        <calcite-fab class="close-button absolute top-2 right-2" icon='trash' color="red" scale="l" appearance="outline" {{action (fn @removeCard @card.key)}}></calcite-fab>
     </article>
 {{/if}}

@@ -19,10 +19,4 @@ export default class CardComponent extends Component {
       JSON.stringify(this.cardData)
     );
   }
-
-  @action
-  deleteThis(event) {
-    deleteCard(this.args.card.key);
-    this.args.controller.triggerReload();
-  }
 }

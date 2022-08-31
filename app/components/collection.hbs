@@ -1,11 +1,9 @@
 <section class="flex flex-wrap justify-around m-4 mb-56">
-    {{#if this.isNotSearch}}
-        {{#if this.isNotUnsorted}}
-            <UnsortCard />
-        {{/if}}
-        <CardForm @collection="{{@collection}}" @controller={{@controller}}></CardForm>
+    {{#if this.isNotUnsorted}}
+        <UnsortCard @handleDrop={{@handleDrop}} @preventDefault={{@preventDefault}} />
     {{/if}}
+    <CardForm @collection="{{@collection}}" @createCard={{@createCard}} @addCardFocused={{@addCardFocused}} @searchResults={{@searchResults}} @searchAPI={{@searchAPI}}></CardForm>
     {{#each @data as |item|}}
-        <Card @controller={{@controller}} @search={{@search}} @drag={{this.isNotSearch}} @card={{item}}/>
+        <Card @search={{@search}} @card={{item}} @removeCard={{@removeCard}} @startDrag={{@startDrag}} @preventDefault={{@preventDefault}} />
     {{/each}}
 </section>

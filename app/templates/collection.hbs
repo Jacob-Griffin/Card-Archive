@@ -1,6 +1,6 @@
 {{#if @model.locationFound}}
     <h1 class="w-full text-5xl text-center font-medium mt-4 mb-6">{{titleCase @model.collection}}</h1>
-    <Collection @controller={{this}} @displayform={{true}} @collection="{{@model.collection}}" @data={{@model.cards}}></Collection>
+    <Collection @collection="{{@model.collection}}" @data={{this.cards}} @createCard={{this.createCard}} @removeCard={{this.removeCard}} @startDrag={{this.startDrag}} @handleDrop={{this.handleDrop}} @preventDefault={{this.preventDefault}} @searchResults={{this.searchResults}} @addCardFocused={{this.addCardFocused}} @searchAPI={{this.searchAPI}}></Collection>
 {{else}}
     <p class="w-full text-2xl mt-4 italic">Collection "{{titleCase @model.collection}}" not found</p>
 {{/if}}

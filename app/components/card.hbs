@@ -3,10 +3,10 @@
         <calcite-fab class="close-button absolute top-2 right-2" icon='trash' color="red" scale="l" appearance="outline" {{action (fn @removeCard @card.key)}}></calcite-fab>
         <img src={{@card.images.image_url}} />
         <h3 class="mt-1 mb-2 w-full text-center text-white">In: 
-            {{#if this.isUnsorted}}
-                <a href="/cards" class="text-blue-300">{{titleCase @card.location}}</a>
+            {{#if (not-unsorted @card.location)}}
+                <LinkTo @route="collection" @model={{@card.location}} class="text-blue-300">{{titleCase @card.location}}</LinkTo>
             {{else}}
-                <a href="/collection/{{@card.location}}" class="text-blue-300">{{titleCase @card.location}}</a>
+                <LinkTo @route="cards" class="text-blue-300">{{titleCase @card.location}}</LinkTo>
             {{/if}}
         </h3>
     </article>

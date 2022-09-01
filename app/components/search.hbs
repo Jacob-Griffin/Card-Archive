@@ -2,11 +2,11 @@
     <calcite-input id="search-bar" icon="search" scale="l" class="w-full max-w-3xl" {{on "input" this.bufferInput}}/>
 </section>
 
-{{#if this.emptyresult}}
-    <p class="mt-4 w-full text-center text-xl italic">No cards found matching "{{this.query}}"</p>
+{{#if @emptyResult}}
+    <p class="mt-4 w-full text-center text-xl italic">No cards found matching "{{@query}}"</p>
 {{/if}}
 <section class="flex flex-wrap justify-around m-4 mb-56">
-{{#each this.cardList as |item|}}
+{{#each @cardList as |item|}}
     <Card @search={{true}} @card={{item}} @removeCard={{@removeCard}} />
 {{/each}}
 </section>

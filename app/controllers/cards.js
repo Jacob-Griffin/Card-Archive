@@ -16,9 +16,11 @@ export default class CardsController extends Controller {
     super(owner, args);
     this.maxResults = 5;
     this.eventAborter = new AbortController();
-    document.addEventListener('click', this.handleDocClick, {
-      signal: this.eventAborter.signal,
-    });
+    if(this.clickEvent == undefined){
+      this.clickEvent = document.addEventListener('click', this.handleDocClick, {
+        signal: this.eventAborter.signal,
+      });
+    }
   }
 
   @tracked toBeDeleted = '';
@@ -30,11 +32,7 @@ export default class CardsController extends Controller {
 
   @action
   handleDocClick(event) {
-    if (event.target.tagName == 'A') {
-      this.eventAborter.abort();
-    } else if (
-      document.getElementById('input-focus-group').contains(event.target)
-    ) {
+    if (document.getElementById('input-focus-group')?.contains(event.target)) {
       this.addCardFocused = true;
     } else {
       this.addCardFocused = false;

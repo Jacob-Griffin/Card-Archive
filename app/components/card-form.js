@@ -4,9 +4,6 @@ import { action } from '@ember/object';
 
 export default class CardFormComponent extends Component {
   @tracked timer;
-  @tracked maxResults = 5;
-  @tracked cardData = {};
-  @tracked showingResults = false;
 
   @action
   manageBuffer() {
@@ -20,15 +17,5 @@ export default class CardFormComponent extends Component {
     let queryKey = document.getElementById('key-select').value;
 
     this.args.searchAPI(query, queryKey);
-  }
-
-  @action
-  showResults() {
-    this.showingResults = true;
-  }
-
-  @action
-  hideResults() {
-    this.showingResults = false;
   }
 }

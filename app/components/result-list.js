@@ -1,7 +1,5 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
-import { addCard } from '../helpers/getcards';
 
 export default class ResultListComponent extends Component {
   get hasResults() {

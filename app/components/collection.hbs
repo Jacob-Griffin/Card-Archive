@@ -1,5 +1,5 @@
 <section class="flex flex-wrap justify-around m-4 mb-56">
-    {{#if this.isNotUnsorted}}
+    {{#if (not-unsorted @collection)}}
         <UnsortCard @handleDrop={{@handleDrop}} @preventDefault={{@preventDefault}} />
     {{/if}}
     <CardForm @collection="{{@collection}}" @createCard={{@createCard}} @addCardFocused={{@addCardFocused}} @searchResults={{@searchResults}} @searchAPI={{@searchAPI}}></CardForm>

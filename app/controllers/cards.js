@@ -8,12 +8,14 @@ import {
   deleteCollection,
   sortCard,
 } from '../helpers/getcards';
+import { checkCache, addToCache, getImage } from '../helpers/caching';
 import { unTitleCase } from '../helpers/titleCase';
 import { A } from '@ember/array';
 
 export default class CardsController extends Controller {
   constructor(owner, args) {
     super(owner, args);
+    this.draggedCard = {};
     this.maxResults = 5;
     this.eventAborter = new AbortController();
     if(this.clickEvent == undefined){
@@ -21,13 +23,13 @@ export default class CardsController extends Controller {
         signal: this.eventAborter.signal,
       });
     }
+    
   }
 
   @tracked toBeDeleted = '';
   @tracked cards = A(this.model.cards);
   @tracked collections = A(this.model.locations);
   @tracked searchResults = {};
-  @tracked draggedCard;
   @tracked addCardFocused = false;
 
   @action
@@ -117,30 +119,40 @@ export default class CardsController extends Controller {
 
   @action
   searchAPI(query, queryKey) {
+    const cacheResult = checkCache(queryKey,query);
+    if(cacheResult?.length>0){
+      return cacheResult;
+    }
+
     //Grab the results
-    fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?${queryKey}=${query}`)
+    fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?${queryKey}=${query}&num=${this.maxResults}&offset=0`)
       .then((response) => response.json())
-      .then((data) => {
+      .then((data) =>{
         //Format results as an array of card objects
         let array = data.data;
         let cardData = {};
 
         //Go through each result
-        for (let i = 0; i < array.length && i < this.maxResults; i++) {
+        for (let i = 0; i < array.length; i++) {
           let card = array[i];
 
+
+          const img = card.card_images[0];
+          const myImg = getImage(img);
           //Save the data in the format I actually use
           cardData[card.id] = {
             id: card.id,
             name: card.name,
             type: card.type,
-            images: card.card_images[0],
+            images: myImg,
             location: 'unsorted',
           };
         }
 
         this.searchResults = cardData;
+        addToCache(queryKey,query,cardData);
         this.addCardFocused = true;
       });
   }
 }
+

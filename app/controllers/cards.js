@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { service } from '@ember/service';
 import {
   addCard,
   addCollection,
@@ -18,14 +19,18 @@ export default class CardsController extends Controller {
     this.draggedCard = {};
     this.maxResults = 5;
     this.eventAborter = new AbortController();
-    if(this.clickEvent == undefined){
-      this.clickEvent = document.addEventListener('click', this.handleDocClick, {
-        signal: this.eventAborter.signal,
-      });
+    if (this.clickEvent == undefined) {
+      this.clickEvent = document.addEventListener(
+        'click',
+        this.handleDocClick,
+        {
+          signal: this.eventAborter.signal,
+        }
+      );
     }
-    
   }
 
+  @service store;
   @tracked toBeDeleted = '';
   @tracked cards = A(this.model.cards);
   @tracked collections = A(this.model.locations);
@@ -119,15 +124,18 @@ export default class CardsController extends Controller {
 
   @action
   searchAPI(query, queryKey) {
-    const cacheResult = checkCache(queryKey,query);
-    if(cacheResult?.length>0){
+    const cacheResult = checkCache(queryKey, query);
+    if (cacheResult?.length > 0) {
       return cacheResult;
     }
 
     //Grab the results
-    fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?${queryKey}=${query}&num=${this.maxResults}&offset=0`)
+    fetch(
+      `https://db.ygoprodeck.com/api/v7/cardinfo.php?${queryKey}=${query}&num=${this.maxResults}&offset=0`
+    )
       .then((response) => response.json())
-      .then((data) =>{
+      .then((data) => {
+          
         //Format results as an array of card objects
         let array = data.data;
         let cardData = {};
@@ -135,7 +143,6 @@ export default class CardsController extends Controller {
         //Go through each result
         for (let i = 0; i < array.length; i++) {
           let card = array[i];
-
 
           const img = card.card_images[0];
           const myImg = getImage(img);
@@ -150,9 +157,8 @@ export default class CardsController extends Controller {
         }
 
         this.searchResults = cardData;
-        addToCache(queryKey,query,cardData);
+        addToCache(queryKey, query, cardData);
         this.addCardFocused = true;
       });
   }
 }
-

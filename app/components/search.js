@@ -11,6 +11,4 @@ export default class SearchRoute extends Component {
     clearTimeout(this.timer);
     this.timer = setTimeout(this.args.runSearch, 1000);
   }
-
-  
 }

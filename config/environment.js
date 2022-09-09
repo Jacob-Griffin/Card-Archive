@@ -18,6 +18,16 @@ module.exports = function (environment) {
       // when it is created
       dbVersion: 11,
     },
+
+    firebase: {
+      apiKey: process.env.FIREBASE_KEY,
+      authDomain: 'yugiohcache.firebaseapp.com',
+      databaseURL: 'https://yugiohcache.firebaseio.com',
+      projectId: 'yugiohcache',
+      storageBucket: 'yugiohcache.appspot.com',
+      messagingSenderId: '143646872359',
+      appId: '1:143646872359:web:7f5ca329be7f94a6758f02',
+    },
   };
 
   if (environment === 'development') {

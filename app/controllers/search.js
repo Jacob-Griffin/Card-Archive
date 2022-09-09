@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { deleteCard,searchCards } from '../helpers/getcards';
+import { deleteCard, searchCards } from '../helpers/getcards';
 
 export default class SearchController extends Controller {
   @tracked cards = [];
